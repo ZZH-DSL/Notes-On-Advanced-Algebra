@@ -1,0 +1,1181 @@
+\documentclass[UTF8]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{bookmark}
+\usepackage{ctex} %这是中文latex必需品
+\usepackage{lipsum}
+\usepackage{amsmath, amsthm, amssymb, amsfonts,mathrsfs} %latex写数学的必需品
+\usepackage{thmtools} %定理环境的工具
+\usepackage{graphicx} %图片设置的工具
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float} %设置图片位置
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz-cd} %用tikz画图的工具
+\usepackage[most]{tcolorbox}
+\usepackage{enumerate} %序号
+\usepackage[center]{titlesec}
+\usepackage{arydshln} % 矩阵画虚线
+
+\usetikzlibrary{positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+
+%定义颜色，可以根据需求自己修改
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{Lightblue}{Blue!15}
+\colorlet{Lightpurple}{Purple!15}
+\colorlet{LightRed}{Red!15}
+\colorlet{LightYellow}{Yellow!15}
+\colorlet{LightCyan}{Cyan!15}
+\colorlet{LightAquamarine}{Aquamarine!15}
+\colorlet{LightCadetBlue}{CadetBlue!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\newtheorem{corollary}{Corollary}[section]
+\newenvironment{solution}{{\noindent\it Solution.} }{\hfill $\square$\par}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={定理}]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={定义}]{definition}
+\tcolorboxenvironment{definition}{colback=LightCyan,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Remark,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={注记}]{remark}
+\tcolorboxenvironment{remark}{colback=LightRed,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Lemma,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={引理}]{lemma}
+\tcolorboxenvironment{lemma}{colback=Lightblue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Corollary,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={推论}]{Corollary}
+\tcolorboxenvironment{corollary}{colback=Lightpurple,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section,refname={命题}]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Example,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section,refname={例}]{example}
+\tcolorboxenvironment{example}{colback=LightGreen,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Exercise,]{prosty}
+\declaretheorem[style=prosty,numberwithin=chapter]{exercise}
+\tcolorboxenvironment{exercise}{colback=LightAquamarine,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Hint \& Answer,]{prosty}
+\declaretheorem[style=prosty,numberwithin=chapter]{answer}
+\tcolorboxenvironment{answer}{colback=LightCadetBlue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother %罗马数字的简洁打法
+
+% 修改 Chapter 为 Lecture
+
+\titleformat{\chapter}{\raggedright\Huge\bfseries}{Lecture \thechapter}{1em}{}
+\titleformat{\section}{\raggedright\Large\bfseries}{\,\thesection\,}{1em}{}
+\titleformat{\subsection}{\raggedright\large\bfseries}{\,\thesubsection\,}{1em}{}
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% 设置 PDF 文件信息
+%\hypersetup{
+%	pdfauthor = {章梓杭},
+%	pdftitle = {巴猪数学讲义 第一卷:数学分析},
+%	pdfkeywords = {Analysis},
+%	CJKbookmarks = true}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% 封面设计如下：
+% ------------------------------------------------------------------------------
+
+%\setCJKfamilyfont{coverfont}{SIMKAI.TTF}	% 设置书名字体
+%\setCJKfamilyfont{cover-author-font}{SIMSUN.TTF}	% 设置作者字体
+
+% 设置标题样式
+
+\begin{titlepage}
+    \vspace*{10em}
+\begin{center}
+    \zihao{0} % 一号字大小，可根据需要调整
+    \textbf{\songti 高等代数选讲} \\ % 加粗宋体显示“高等代数”
+    \vspace{4em} % 增加一些垂直间距
+    \zihao{4} % 四号字大小，可根据需要调整
+    作者: ZZH \\ % 第二行写作者
+    \vspace{10em} % 增加垂直间距
+
+    % 页面下方写免责声明
+    \zihao{5} % 五号字大小，可根据需要调整
+    本讲义使用于 HEO 高等代数\Rmnum{2} 课程中, \\
+    内容由 \LaTeX 编译, 图片使用 GeoGebra 绘制. \\
+    参考多部书目, 仅用作学习讨论和笔记需求. 如有错误, 欢迎指正. \\
+    使用时间 2025/5/12\\
+
+    最后编译时间 \today\\
+\end{center}
+
+\end{titlepage} 
+
+\newpage
+
+\vspace*{5em}
+
+每逢拾笔, 愿母亲安康. 
+
+本笔记摘选自 巴猪数学讲义: 第二卷 高等代数. 
+
+谨以彼书赠与女友与巴猪的陪伴. 
+
+祝诸位在数学上逢见挚爱. 
+
+\vspace*{5em}
+
+摘自 Grassmann 扩张论. 您的理论如今已是大学入学必学的课程. 
+
+\begin{quotation}
+    \kaishu
+    我始终坚信我在此科学上所付出的劳动不会白费, 它耗尽了我生命中最重要的阶段, 
+    让我付出了超常的努力. 我当然知道我给出的这门科学的形式还不完善, 
+    它一定是不完善的. 但是, 我知道而且有义务在此声明 (可能有人会认为我很狂妄), 
+    即使这一成果再过十七年或更长时间还不被使用, 也没有真正融入到科学的发展之中, 
+    它冲出遗忘的尘埃现身的时候也一定会到来, 现在沉睡着的思想结出硕果的那一天一定会到来. 
+    我知道, 如果我今天还不能 (如我至今徒劳地期望那样) 把学者们吸引到我的周围, 
+    用这些思想帮助他们成果累累, 促使其进步, 丰富其学识, 
+    那么这种思想在将来一定会重生, 或许以另一种新形式, 与时代发展水乳交融. 
+    因为真理是永恒不灭的. 
+    \songti
+\end{quotation}
+
+\vspace*{5em}
+
+摘自 Grothendieck 丰收与播种. 愿数学的远端没有硝烟. 
+
+\begin{quotation}
+    
+    \kaishu   
+    我可以用同样的坚果意象来说明第二种方法: 
+    
+    第一种类比: 
+    我首先想到的是将坚果浸泡在某种软化液体中——为何不直接用水呢? 
+    你偶尔摩擦坚果以促进液体渗透,其余时间则静待其变. 
+    经过数周甚至数月, 外壳逐渐变得柔软——当时机成熟, 仅需用手轻轻一压, 
+    它便会如完美成熟的牛油果般自然裂开! 
+
+    几周前, 我的脑海中闪现了另一幅图像. 
+      
+    那片等待被理解的未知, 仿佛一片坚硬的土地或泥灰岩, 抗拒着侵入\dots
+    而海水无声无息地悄然上涨, 看似毫无动静, 潮水遥远得几乎听不见声响\dots 
+    但它终将温柔包裹住那顽固的物体. 
+    
+\end{quotation}
+
+代数就是这片 Rising Sea. 
+
+\setcounter{chapter}{8}
+\chapter{线性同构}
+\section{线性映射的性质}
+
+下面附上关于线性映射的一些性质, 不过是定义的推论罢了. 
+
+\begin{proposition}
+    设 $V,U$ 为域 $F$ 上的线性空间, 
+    设 $\varphi: V \to U$ 是一个线性映射, 则 
+    \begin{enumerate}[(1)]
+        \item $\varphi(\boldsymbol{0}) = \boldsymbol{0}$. 
+
+        \item 设向量组 $S = (\boldsymbol{v}_s) \subset V$
+        $(k_s)\subset F$ 为仅有有限个非 0 项的纯量列, 
+        则 $\varphi(\sum_{s} k_s \boldsymbol{v}_s)
+        = \sum_s k_s \varphi(\boldsymbol{v}_s)$. 
+
+        \item 设 $W \subset V$ 为 $V$ 的一个子空间, 
+        则限制在子空间 $W$ 上的
+         $\varphi|_W : W \to U$ 是一个线性映射. 
+
+        \item 若 $\varphi$ 为可逆线性映射, 
+        则 $\varphi^{-1} : U \to V$ 也为线性映射, 
+        从而线性同构具对称性. 
+
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item $2\varphi(\boldsymbol{0}) = \varphi(2\boldsymbol{0}) 
+        = \varphi(\boldsymbol{0})$ 再用一次消去律即可. 
+        \item 对 $(k_s)$ 中非零项的个数进行归纳法. 
+        \item 显然. 
+        \item 任取 $\boldsymbol{u}_1,\boldsymbol{u}_2 \in U$, 
+        由于 $\varphi$ 为 1-1 映射, 
+        存在唯一的 $\boldsymbol{v}_1,\boldsymbol{v}_2 \in V$ 
+        满足 $\varphi(\boldsymbol{v}_i)=\boldsymbol{u}_i,\,i=1,2$ 
+        于是 
+        $$\begin{aligned}
+        \varphi^{-1}(\boldsymbol{u_1}+\boldsymbol{u_2})&= 
+        \varphi^{-1}(\varphi(\boldsymbol{v}_1)+\varphi(\boldsymbol{v}_2))\\
+        &= \varphi^{-1}\circ\varphi (\boldsymbol{v}_1+\boldsymbol{v}_2) \\
+        &= \boldsymbol{v}_1+\boldsymbol{v}_2 \\
+        &= \varphi^{-1}(\boldsymbol{u_1}) + \varphi^{-1}(\boldsymbol{u_2})
+        \end{aligned}$$
+        数乘可以同理验证. 
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    线性同构是等价关系. 
+\end{proposition}
+
+\begin{proof}
+    自反性取 $id_V$ 即可, 对称性由上述命题给出, 
+    传递性由线性映射的乘法运算之封闭性给出. 
+\end{proof}
+
+我们下面说明, 线性映射是保线性相关的; 但就算是线性变换, 也可能会将
+线性无关的向量组变成线性相关. 
+
+\begin{proposition}
+    设 $\varphi: V \to U$ 是一个线性映射, 
+    若向量组 $S = (\boldsymbol{v}_s) \subset V$ 线性相关, 
+    则向量组 $\varphi(S) = (\varphi(\boldsymbol{v}_x))\subset U$ 
+    线性相关.  
+\end{proposition}
+
+\begin{proof}
+    设 $S = (\boldsymbol{v}_s) \subset V$ 线性相关, 
+    则存在一组不全为 0 的表示 $(k_s)$ 使得 
+    $$\sum_{s} k_s \boldsymbol{v}_s = \boldsymbol{0},$$ 
+    等式两边同时做线性映射 $\varphi$, 则得到 
+    $$\sum_s k_s \varphi(\boldsymbol{v}_s) 
+    =\varphi\left(\sum_{s} k_s \boldsymbol{v}_s\right)
+    =\varphi(\boldsymbol{0}) =\boldsymbol{0} $$
+    于是 $\varphi(S) = (\varphi(\boldsymbol{v}_x))\subset U$ 线性相关. 
+\end{proof}
+
+在给出不保线性无关的例子之前, 我们先来用一则引理来说明, 
+\textbf{线性映射是由基完全决定的.} 
+
+\begin{lemma}\label{lemma linear mapping}
+    设有 $F$ 上的线性空间 $V$ 和 $U$, $B=(\boldsymbol{e}_s)$ 为 $V$ 
+    的一个基. 
+    \begin{enumerate}[(1)]
+        \item 若有线性映射 $\varphi,\psi : V \to U$ 
+        满足 $\varphi(\boldsymbol{e}_s) = \psi(\boldsymbol{e}_s), 
+        \,\forall\,\boldsymbol{e}_s \in B $, 
+        则 $\varphi = \psi$. 
+        
+        \item 给定 $U$ 中的一组向量 
+        $(\boldsymbol{u}_s)$, 存在唯一的线性映射 $\varphi: V\to U$ 
+        满足 $\varphi(\boldsymbol{e}_s) = \boldsymbol{u}_s,\,
+        \forall\,\boldsymbol{e}_s \in B$. 
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item 对任一向量 
+        $\boldsymbol{v} = \sum_{s} x_s\boldsymbol{e}_s \in V$ 
+        有 
+        $$\varphi(\boldsymbol{v})=
+        \varphi\left(\sum_{s} x_s\boldsymbol{e}_s\right)
+        = \sum_{s} x_s\varphi(\boldsymbol{e}_s)=
+        \sum_{s} x_s\psi(\boldsymbol{e}_s) 
+        = \psi \left(\sum_{s} x_s\boldsymbol{e}_s\right) 
+        = \psi(\boldsymbol{v})$$
+        因此 $\varphi = \psi$. 
+        
+        \item 唯一性由 (1) 已证, 下证存在性. 
+        由于基已固定, 每个向量的表示都是唯一的, 
+        因此下方定义的映射是良定的. 
+        $$\begin{aligned}
+            \varphi : V &\to U \\
+            \boldsymbol{v} = \sum_{s}x_s\boldsymbol{e}_s 
+            &\mapsto \sum_{s}x_s\boldsymbol{u}_s
+        \end{aligned}$$
+        显然是一个线性映射. 
+    \end{enumerate}
+\end{proof}
+
+\begin{example}
+    \textbf{线性映射不保线性无关.} 
+    取 $\varphi : \mathbb{R}^3 \to \mathbb{R}^3$ 
+    使得 
+    $\begin{pmatrix}
+        x \\ y \\ z 
+    \end{pmatrix}
+    \mapsto 
+    \begin{pmatrix}
+        x \\ y \\ 0
+    \end{pmatrix}$
+    其几何意义是三维空间中的点在 $z=0$ 平面上的投影. 
+    取标准正交基中的 $\boldsymbol{e}_2,\boldsymbol{e}_3$, 
+    它们被映为 $\varphi(\boldsymbol{e}_2) = \boldsymbol{e}_2$ 
+    与 $\varphi(\boldsymbol{e}_3) = \boldsymbol{0}$, 
+    它们显然线性相关 (零向量与任意向量都线性相关). 
+\end{example}
+
+于是自然也会提出一个问题, 加入怎样的条件可以使得线性无关被保持住? 
+
+线性同构是必然的一个想法. 
+
+
+\section{线性空间的纯量表示}
+
+\subsection{线性同构}
+
+在介绍线性空间的相关内容的时候, 我们总是以线性方程组以及矩阵出发, 
+现在我们要说的是, 线性空间就是向量空间. 
+
+下面我们所有的 $\cong$ 符号都表示\textbf{线性同构}. 
+
+\begin{theorem}
+    设 $V$ 是域 $F$ 上的 $n$ 维线性空间, 则 $V \cong F^n$. 
+\end{theorem}
+
+\begin{proof}
+    由基的存在性定理, $V$ 上总存在一组基, 设为 
+    $B =(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$. 
+    由于基下坐标的存在唯一性, 对任意 $\boldsymbol{v} \in V$, 
+    都存在唯一的坐标 $\boldsymbol{x} = (x_1,x_2,\cdots,x_n)^T$ 
+    使得 $\boldsymbol{v} = x_1\boldsymbol{v}_1+\cdots+x_n\boldsymbol{v}_n$. 
+
+    固定这组基, 我们选择如下的映射 
+    $$\begin{aligned}
+        \eta_B: V &\to F^n \\
+        \boldsymbol{v} = x_1\boldsymbol{v}_1+\cdots+x_n\boldsymbol{v}_n
+        & \mapsto \boldsymbol{x}= (x_1,x_2,\cdots,x_n)^T
+    \end{aligned}$$
+    不难验证它是一个线性映射 (后面我们会给出对应的矩阵). 
+    坐标的唯一性保证了单射, 满射则是显然的. 
+
+    我们称 $\eta_B$ 为基 $B$ 诱导的一个典范同构. 
+\end{proof}
+
+由于我们先前已经证明线性同构是等价关系, 我们能够得到以下这个惊人的结果. 
+
+\begin{corollary}
+    同一域 $F$ 上的任意具有相同维数的有限维线性空间彼此同构. 
+\end{corollary}
+
+\begin{proof}
+    无非就是 $V \cong F^n \cong W$. 
+\end{proof}
+
+我们还可以仿照着证明一个更加强的结论. 
+
+\begin{corollary}
+    同一域 $F$ 上的任意具有相同维数的至多可数维 (按基数定义) 
+    线性空间彼此同构. 
+\end{corollary}
+
+\begin{proof}
+    有限维的情形已证, 我们证明可数维的情形, 设 $V$ 为 $F$ 上的可数维线性空间. 
+    因为可数维线性空间一定有
+    可数的基, 我们记其为 $B = (\boldsymbol{v}_i)_{i=1}^{\infty}$, 
+    则任意 $\boldsymbol{v} \in V$ 都有唯一的坐标 
+    $\boldsymbol{x} = (x_i)_{i=1}^{\infty} \in F^{\infty}$, 
+    注意这里仍然只有有限个非 0 的 $x_i$. 
+    我们可以类似地证明, 
+    $$ \begin{aligned}
+        \eta_B : V & \to F^{\infty} \\
+        \boldsymbol{v} = \sum_{i=1}^{\infty} x_i \boldsymbol{v}_ i 
+        &\mapsto \boldsymbol{x}=(x_1,x_2,\cdots,x_n,\cdots)^T
+    \end{aligned}$$
+    为线性同构, 其中 $F^{\infty}$ 无非就是域上数列. 
+    单射性依旧由基的性质保持, 满射性通过观察基的每个向量 $\boldsymbol{v}_i$ 
+    都将映入标准基的 $\boldsymbol{e}_i$ 得出. 
+\end{proof}
+
+超出可数无穷的我们几乎很难说清楚基是什么样子的了. 
+
+线性空间的理论对域的性质有很强的支撑作用. 
+一方面, 域本身就是自身上的一个 1 维的线性空间. 
+
+\begin{corollary}
+    两个域同构, 则两个域作为自身上的线性空间同构. 
+\end{corollary}
+
+而另一方面, 域也是子域上的一个基域, 
+比方说 $\mathbb{C}$ 就是 $\mathbb{R}$ 上的一个 2 维的线性空间. 
+因此我们可以尝试用线性空间的结构来构造其一些有限域. 
+这样的内容超出本书范围, 但是构造与域线性同构的线性空间亦是一个良好的应用. 
+
+\begin{example}
+    \textbf{[复数的矩阵形式]} 
+    设 $$M=\left\{\begin{pmatrix}
+        x & y \\
+        -y & x
+    \end{pmatrix}:\,x,y \in \mathbb{R}\right\}$$ 
+    这是一个 $\mathcal{M}_{2}(F)$ 的子空间, 
+    它有一个基 $(\boldsymbol{I},\boldsymbol{i})$, 
+    其中 $\boldsymbol{I}=\begin{pmatrix} 1& \\ &1  \end{pmatrix}$, 
+    $\boldsymbol{i} = \begin{pmatrix}& 1 \\ -1 & \end{pmatrix}$. 
+    因此每个 $\boldsymbol{Z}\in M$ 
+    都可以唯一地表示成 $x\boldsymbol{I}+y\boldsymbol{i}$. 
+
+    设 $\boldsymbol{Z}_1 = x_1\boldsymbol{I}+y_1\boldsymbol{i}$, 
+    $\boldsymbol{Z}_2 = x_2\boldsymbol{I}+y_2\boldsymbol{i}$. 
+    注意到 
+    $$
+    \boldsymbol{i}^2 = \begin{pmatrix} & 1 \\ -1 &  \end{pmatrix}
+    \begin{pmatrix} & 1 \\ -1 & \end{pmatrix} = 
+    \begin{pmatrix} -1& \\ &-1  \end{pmatrix} = 
+    -\boldsymbol{I}
+    $$
+    因此 
+    $$\begin{aligned}
+        \boldsymbol{Z}_1\boldsymbol{Z}_2 
+        &=  (x_1\boldsymbol{I}+y_1\boldsymbol{i})
+        (x_2\boldsymbol{I}+y_2\boldsymbol{i}) \\
+        &= x_1x_2\boldsymbol{I} + (x_1y_2+x_2y_1)\boldsymbol{i}
+        -y_1y_2\boldsymbol{i}\\
+        &= (x_1x_2-y_1y_2)\boldsymbol{I} + 
+        (x_1y_2+x_2y_1)\boldsymbol{i}
+    \end{aligned}$$
+    并且下指标的 $1,2$ 交换并不影响乘积, 从而 
+    $ \boldsymbol{Z}_1\boldsymbol{Z}_2 = 
+    \boldsymbol{Z}_2\boldsymbol{Z}_1 \in M$. 
+    进一步, 因为 $|\boldsymbol{Z}|=x^2 +y^2$, 
+    从而只要 $\boldsymbol{Z}\neq 0$, $\boldsymbol{Z}$ 都可逆. 
+    于是我们证明了 $M*$ 是一个交换群. 
+    而 $M$ 的加法的运算性质均循从线性空间上的加法, 
+    与矩阵的加法别无二致, 分配律也是自然满足的. 
+    从而 $M$ 构成一个域, 单位元为 $\boldsymbol{I}$. 
+
+    取映射 
+    $$ \begin{aligned}
+        \varphi: \quad\quad M & \to \mathbb{C} \\
+        x\boldsymbol{I}+y\boldsymbol{i} &\mapsto 
+        x+yi
+    \end{aligned}$$
+    不难验证 
+    $\varphi(\boldsymbol{Z}_1\boldsymbol{Z}_2) = 
+    \varphi(\boldsymbol{Z}_1)\varphi(\boldsymbol{Z}_2)$ 
+    和 $\varphi(\boldsymbol{Z}+\boldsymbol{Z}_2) = 
+    \varphi(\boldsymbol{Z}_1)+\varphi(\boldsymbol{Z}_2)$ 
+    以及 $\varphi$ 是 1-1 映射. 
+    因此, $\varphi$ 是一个环同构, 
+    从而 $M$ 与 $\mathbb{C}$ 作为域同构. 
+    
+    因此, $M$ 与 $\mathbb{C}$ 作为 $\mathbb{R}$ 上的线性空间
+    同构. (这在此处是最浅显的结论)
+
+    此外, 我们可以定义 $M$ 上任一元 $\boldsymbol{Z}$ 
+    的模为行列式即 $||\boldsymbol{Z}||=|\boldsymbol{Z}|=x^2+y^2$, 
+    从而保证 $M$ 构成赋范空间. 
+    并且因为 
+    $||\varphi(\boldsymbol{Z})|| = ||\boldsymbol{Z}||$, 
+    $M$ 与 $\mathbb{C}$ 作为赋范线性空间等距同构. 
+
+    最后, 我们再为其添置共轭运算. 
+    记 $$\boldsymbol{Z}^{-} = \begin{pmatrix} x & -y \\y & x
+    \end{pmatrix}=x\boldsymbol{I}-y\boldsymbol{i}$$ 
+    从而共轭运算依旧是同构的. 
+    并且有 $||\boldsymbol{Z}||=\boldsymbol{Z}\boldsymbol{Z}^-$. 
+
+    综上所述, 复数系和 $M$ 是完全同构的. 
+
+    这使得我们可以做一个小应用. 
+    由于复数系上有三角公式: 
+    $$ e^{i\theta} = \cos\theta + i \sin \theta $$ 
+    它的几何意义是乘以 $e^{i\theta}$ 可以将复平面的向量旋转 $\theta$ 
+    角. 而按照同构, 有 
+    $$ \varphi^{-1}(e^{i\theta}) = 
+    \begin{pmatrix}
+        \cos\theta & \sin\theta \\
+        -\sin\theta & \cos\theta 
+    \end{pmatrix}$$ 
+    我们就可以将复平面的操作完全等价地运用在二维平面 $\mathbb{R}^2$ 
+    中 (因为它们是等距同构的, 且线性空间并不涵盖复平面的信息), 
+    这个矩阵也称作旋转矩阵, 对应于将$\mathbb{R}^2$ 向量顺时针旋转 
+    $\theta$ 角. 
+\end{example} 
+
+\begin{remark}
+    这样的纯代数构造, 最大的价值在于可以将目光推向多元数. 
+    我们管复数叫做二元数, 而四元数也是可以通过矩阵构造出来的. 
+\end{remark}
+
+
+\subsection{线性映射与矩阵的同构}
+
+先前已经证明, 线性映射本身构成一个线性空间. 
+那么我们自然要去研究它的基与维数, 
+一旦我们确立了其基与维数, 就可以将其与一些简单的线性空间同构, 
+从而将抽象的线性映射变成具体的代数对象. 
+由先前的定理, 向量空间是一个再自然不过的想法. 
+可我们亦注意到, 线性映射不单单是一个线性空间, 因为线性映射的复合
+是再常见不过的一种运算, 我们必须要以\textbf{代数}的角度将其与某一
+常见的代数同构. 虽然向量空间中的向量可以定义外积, 
+但是外积具有浓厚的几何性质 (正交), 而普通的线性空间并没有这种性质. 
+哪个对象又经常出现, 又能寻找到合适的同构, 又能简单地计算, 又既有
+加法数乘和显著的乘法呢? 
+
+是矩阵. 
+
+为了严谨地讨论, 我们下面介绍 $R$-模和 $R$-代数. 
+
+\begin{definition}
+    \textbf{环 ring} $R$ 指的是一个配备了两种二元代数运算
+    的集合, 分别称其为加法 $+$ 和乘法 $\cdot$. 满足如下的运算法则: 
+    \begin{enumerate}[(i)]
+        \item $R$ 关于加法 $+$ 构成一个\textbf{ Abel 群}$R^{+}$, 即:
+            \begin{enumerate}[(a)]
+                \item \textbf{结合律 associativity:} 任意 $a,b,c \in R$ 有
+                $a+(b+c) = (a+b)+c$
+                \item \textbf{0 元 element 0:} 存在 $ 0 \in R$ 使得对
+                任意 $a\in R$ 有 $ 0+a = a$
+                \item \textbf{负元:} 对任意 $a\in R$, 存在 $a' \in R$ 
+                使得 $a' + a = 0$, 记 $a'$ 为 $-a$
+                \item \textbf{交换律 commutativity:} $ a+b =b+a$
+            \end{enumerate}
+            \item $R$ 除了 0 关于乘法 $\cdot$ 构成一个\textbf{幺半群 monoid}
+             $ R^{\times} = R - \{0\} $, 即:
+            \begin{enumerate}[(a)]
+                \item \textbf{结合律 associativity:} 任意 $a,b,c \in R$ 有
+                $a(bc) = (ab)c$
+                \item \textbf{单位元 identity:} 存在 $ 1 \in R$ 使得对
+                任意非 0 元 $a\in R$ 有 $ 1a = a$
+                \item \textbf{逆元 unit:} 对任意非 0 元 $a\in R$, 存在 $a' \in R$ 
+                使得 $a'a = 1$, 记 $a'$ 为 $a^{-1}$
+            \end{enumerate}
+        \item \textbf{左右分配律 distributivity:} 任意 $a,b,c \in R$ 有
+        $ a(b+c) = ab + ac,\, (b+c)a = ba + ca$
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    \textbf{[R-模 R-module]} 
+    设 $R$ 为环. 
+    \begin{itemize}
+        \item $R$ 上的\textbf{左模}是指二元组 $(M,\varphi)$, 
+        其中 $M$ 是一个 Abel 群, $\varphi: R \times M \to M$ 
+        是一个映射, 记作 $\varphi(r,m) = r\cdot m$ 或 $rm$, 
+        我们称之为\textbf{数乘}, 其满足: 
+        \begin{enumerate}
+            \item \textbf{双线性}: 对任意 $a,b \in R$ 和任意 $m,n \in M$ 
+            有 $(a+b)m = am + bm, \,a(m+n)= am +an$. 
+            \item \textbf{单位律}: 对任意 $m\in M$, 有 $1m = m$. 
+            \item \textbf{结合律}: 对任意 $a,b \in R$ 和 $m \in M$ 有
+            $a(bm)=(ab)m$. 
+        \end{enumerate}
+        称 $M$ 为 \textbf{$R-$左模}.
+
+        \item $R$ 上的\textbf{右模}是指二元组 $(M,\varphi)$, 
+        其中 $M$ 是一个 Abel 群, $\varphi: M \times R \to M$ 
+        是一个映射, 记作 $\varphi(m,r) = m\cdot r$ 或 $mr$, 
+        我们称之为\textbf{数乘}, 其满足: 
+        \begin{enumerate}
+            \item \textbf{双线性}: 对任意 $a,b \in R$ 和任意 $m,n \in M$ 
+            有 $m(a+b) = ma + mb, \,(m+n)a= ma +na$. 
+            \item \textbf{单位律}: 对任意 $m\in M$, 有 $m1 = m$. 
+            \item \textbf{结合律}: 对任意 $a,b \in R$ 和 $m \in M$ 有
+            $(ma)b=m(ab)$. 
+        \end{enumerate}
+        称 $M$ 为 \textbf{$R-$右模}.
+
+        \item 若 $R$ 为交换环, 则 $R$-左模和 $R$-右模是等价的, 
+        称为 $R$-模. 
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    \textbf{[模同态 module homomorphism]} 
+    环 $R$ 上的左模 $M_1$, $M_2$ 之间的\textbf{模同态}是指
+    一个 abel 群同态 $f: M_1 \to M_2,$ 
+    其满足对任意 $r \in R$ 和 $m \in M_1$ 都有 $f(rm)=rf(m)$. 
+
+    $M_1$ 到 $M_2$ 的全体同态构成 abel 群, 记为 $\mathrm{Hom}_R(M_1,M_2)$. 
+
+    同理可以定义右模. 
+\end{definition}
+
+域 $F$ 上的线性空间是域 $F$ 上的一个模, 
+线性映射则是一个 $F$-模同态. 
+
+\begin{definition}
+    \textbf{[结合代数/ $R$-代数 R-algebra]} 
+    设 $R$ 是交换环, $R$ 上的结合代数 ($R$-代数) 是指二元组 $(A,\,\cdot\,)$, 
+    其中 $A$ 是 $R$-模, $\,\cdot\,$ 是 $A$ 上的二元代数运算, 
+    称为\textbf{乘法}. 并且满足: 
+    \begin{enumerate}
+        \item \textbf{乘法的 $R-$双线性}: 对任意 $r\in R$ 和 $a,b \in A$, 
+        有 $ra \cdot b = r(a\cdot b) = a\cdot (rb)$. 
+        \item $(A,+,\,\cdot\,)$ 构成一个环, 其中 $+$ 是 $A$ 作为 
+        $R-$模的加法.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    \textbf{[$R$-代数同态]} 
+    设 $R$ 是交换环, $A,B$ 是 $R-$代数. 
+    则 $A,B$ 之间的\textbf{同态}是一个映射 $f: A \to B$, 
+    它既是 $R-$模同态, 又是环同态. 
+
+    $R$-代数的同构指的是既是 1-1 映射又是 $R$-代数同态的映射. 
+\end{definition}
+
+于是之前的讨论转化为如下的结论. 
+
+\begin{proposition}
+    设 $V$ 为域 $F$ 上的线性空间, 则其上的线性变换全体 
+    $\mathcal{L}(V)$ 关于加法和数乘构成线性空间, 
+    关于加法和乘法 (复合) 构成 (非交换) 环, 
+    换言之, $\mathcal{L}(V)$ 是一个 $F$-代数. 
+\end{proposition}
+
+参照定义可验证
+\begin{exercise}
+    $\mathcal{M}_n(F)$ 是一个 $F$-代数. 
+\end{exercise}
+
+下面我们将在 $\mathcal{L}(V)$ 和 $\mathcal{M}_n(F)$ 之间建立同构. 
+
+我们定义基的一大目的就是希望线性空间中的每一向量都可以由基来唯一地线性表示. 
+由于线性映射是将一个向量映入另一线性空间里的向量, 通过这样的方式来观察
+线性映射是主要的手段. 
+
+设 $\varphi : V \to U$ 是从 $n$ 维线性空间 $V$ 到 $m$ 维线性空间 $U$ 
+的一个线性映射. 
+设 $B=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots\boldsymbol{v}_n)$ 
+为 $V$ 的一个基, 
+$B' = (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots\boldsymbol{w}_m)$ 
+为 $U$ 的一个基. 
+对任一向量 
+$\boldsymbol{v} = x_1\boldsymbol{v}_1+ \cdots + x_m\boldsymbol{v}_n
+\in V$, 
+线性映射保证了 
+$$\varphi(\boldsymbol{v}) = x_1 \varphi(\boldsymbol{v}_1)+ 
+\cdots + x_n\varphi(\boldsymbol{v}_n) \in U,$$
+此时后者是一个 $U$ 中的向量, 因此可以唯一地被线性表示出来. 
+同理, 
+$\varphi(\boldsymbol{v}_1),\varphi(\boldsymbol{v}_2),\cdots$, 
+$\varphi(\boldsymbol{v}_n)$ 是 $U$ 的一个向量组, 
+我们可以构造出它的表示矩阵, 
+$$ (\varphi(\boldsymbol{v}_1),\varphi(\boldsymbol{v}_2),\cdots,
+\varphi(\boldsymbol{v}_n)) = (\boldsymbol{w}_1,\boldsymbol{w}_2,
+\cdots\boldsymbol{w}_m)\boldsymbol{A} $$
+其中 $\boldsymbol{A} \in \mathcal{M}_{m,n}(F)$ 
+为表示矩阵. 
+我们先前已经证明, 线性映射虽然保持线性相关, 
+却无法保持线性无关性, 因此 $\boldsymbol{A}$ 不一定是满秩矩阵. 
+
+于是此时我们可以完全地用上述式子描述每个向量的映射情况 
+$$ \varphi(\boldsymbol{v}) = 
+(\varphi(\boldsymbol{v}_1),\varphi(\boldsymbol{v}_2),\cdots,
+\varphi(\boldsymbol{v}_n)) \boldsymbol{x} = 
+ (\boldsymbol{w}_1,\boldsymbol{w}_2,
+\cdots\boldsymbol{w}_m)\boldsymbol{Ax}$$
+其中 $\boldsymbol{x} = (x_1,x_2\cdots,x_n)^T$ 为 $\boldsymbol{v}$ 
+在基 $B$ 下的坐标. 
+
+结合引理 \ref{lemma linear mapping}, 我们给出如下的图表: 
+
+\begin{center}
+    \begin{tikzcd}
+        \mathcal{L}(V,U) \arrow[r] & \mathcal{L}(B,U) \arrow[r] 
+        \arrow[r]& \mathcal{M}_{m,n}(F) \\
+        \varphi \arrow[r,mapsto] & \varphi|_{B} \arrow[r,mapsto] 
+        & \boldsymbol{A}  \\
+        \varphi(\boldsymbol{v}) \arrow [r,=] &
+        (\varphi(\boldsymbol{v}_1),\varphi(\boldsymbol{v}_2),\cdots,
+        \varphi(\boldsymbol{v}_n)) \boldsymbol{x} \arrow[r,=]
+        &  (\boldsymbol{w}_1,\boldsymbol{w}_2,
+        \cdots\boldsymbol{w}_m)\boldsymbol{Ax}
+    \end{tikzcd}
+\end{center}
+
+固定 $V$ 的基 $B$ 和 $U$ 的基 $B'$, 
+我们记上述映射为 
+$\eta_{B,B'}: \mathcal{L}(V,U) \to \mathcal{M}_{m,n}(F)$, 
+我们验证其为 1-1 映射. 
+
+首先, 设 $\eta_{B,B'}(\varphi) = \eta_{B,B'}(\psi)$, 
+则基 $B$ 在线性映射 $\varphi$ 和 $\psi$ 下均映成
+$$ (\varphi(\boldsymbol{v}_1),\varphi(\boldsymbol{v}_2),\cdots,
+\varphi(\boldsymbol{v}_n)) = (\boldsymbol{w}_1,\boldsymbol{w}_2,
+\cdots\boldsymbol{w}_m)\boldsymbol{A} 
+=  (\psi(\boldsymbol{v}_1),\psi(\boldsymbol{v}_2),\cdots,
+\psi(\boldsymbol{v}_n))$$
+于是由引理 \ref{lemma linear mapping}, 
+我们得到 $\varphi = \psi$, 因此满足单射. 
+
+其次, 给定一个 $\boldsymbol{A}$, 我们可以构造限制在基 $B$ 上的映射 
+$$ \begin{aligned} 
+\varphi^*: B & \to U \\
+\boldsymbol{v}_j &\mapsto  (\boldsymbol{w}_1,\boldsymbol{w}_2,
+\cdots\boldsymbol{w}_m)\boldsymbol{\alpha}_j
+\end{aligned} $$
+其中 $\boldsymbol{\alpha}_j$ 为 $\boldsymbol{A}$ 的第 $j$ 个列分块. 
+由引理 \ref{lemma linear mapping}, $\varphi^*$ 诱导出唯一的线性映射 
+$\varphi \in \mathcal{L}(V,U)$. 
+
+于是我们实际已经证明了如下的定理: 
+
+\begin{theorem}
+设 $\varphi : V \to U$ 是从 $n$ 维线性空间 $V$ 到 $m$ 维线性空间 $U$ 
+的一个线性映射. 
+设 $B=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots\boldsymbol{v}_n)$ 
+为 $V$ 的一个基, 
+$B' = (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots\boldsymbol{w}_m)$ 
+为 $U$ 的一个基. 
+则 $\eta_{B,B'}: \mathcal{L}(V,U) \to \mathcal{M}_{m,n}(F)$, 
+为线性同构, 并且满足如下的交换图表: 
+\begin{center}
+    \begin{tikzcd}
+        V \arrow[r,"\varphi"] \arrow[d,"\eta_{B}"] & U 
+        \arrow[d,"\eta_{B'}"] \\
+        F^n \arrow[r,"\eta_{B,B'}(\varphi)"] & F^m
+    \end{tikzcd}
+\end{center}
+也就意味着 
+$\varphi = \eta_{B'}^{-1} \circ \eta_{B,B'}(\varphi) \circ \eta_{B}$ 
+并且因为在固定了基 $B$ 和 $B'$ 之后, 
+自然同构 $\eta_{B}$ 和 $\eta_{B'}$ 都是唯一确定的, 
+我们完全可以在这层 "自然" 的意味之下认为线性映射 $\varphi$ 
+是与矩阵 $\eta_{B,B'}(\varphi)$ 完全等价的. 
+\end{theorem} 
+
+上述定理极为重要的意义是将矩阵语言与线性空间语言完全结合在一起, 
+从而所有的矩阵相关的问题都可以等价为线性空间相关的问题, 
+而线性空间是要比矩阵泛用得多, 因此我们接下来的主线就是将矩阵的内蕴
+翻译成线性空间的概念, 这一步自然是将代数理论抽象化从而迎接更加广泛的应用. 
+
+实际上我们早已揭示, 所有的相同维数的有限维线性空间彼此同构, 
+因此单纯地揭示线性同构是没有更多意义的. 
+我们如此建立自然同构的一个目的是如下的推论. 
+
+\begin{corollary}
+    设 $V,W$ 为域 $F$ 上的有限维线性空间, 
+    其维数分别为 $n$ 和 $m$, 则 
+    $\mathcal{L}(V,W)$ 是一个 $m\times n$ 维线性空间. 
+\end{corollary}
+
+\begin{proof}
+    $$\mathrm{dim}\,\mathcal{L}(V,W) = 
+    \mathrm{dim} \, \mathcal{M}_{m \times n} = m \times n.$$
+\end{proof}
+
+我们从头来回顾一下矩阵的概念, 首先定义的当然是矩阵的运算, 
+加法和数乘与线性运算的加法和数乘等同, 那对于乘法, 
+最自然的想法也是将其与线性映射的乘法 (复合) 所等同. 
+
+\begin{theorem}
+    设 $V, W, U$ 分别是 $F$ 上的有限维线性空间, 
+    它们分别有基 
+    $B=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_r)$, 
+    $B'=(\boldsymbol{w}_1,\cdots,\boldsymbol{w}_m)$, 
+    $B''=(\boldsymbol{u}_1,\cdots,\boldsymbol{u}_n)$, 
+    对于任意线性映射 $\varphi: V \to W$ 和线性映射 
+    $\psi: W \to U$, 
+    有 
+    $$ \eta_{B,B''}(\psi \circ \varphi) =
+    \eta_{B',B''}(\psi)  \eta_{B,B'}(\varphi), $$
+    换言之, 如果 $\varphi$ 和 $\psi$ 分别对应于矩阵 
+    $\boldsymbol{A}$ 和 $\boldsymbol{B}$, 
+    则它们的复合 $\psi \circ \varphi$ 对应于矩阵 $\boldsymbol{BA}$. 
+
+    也就是如下的交换图: 
+    \begin{center}
+        \begin{tikzcd}
+            {\mathcal{L}(W,U) \times \mathcal{L}(V,W) } 
+            \arrow[d, "{(\eta_{B',B''},\eta_{B,B'})}"] 
+            \arrow[r, "\circ"] 
+            & {\mathcal{L}(V,U)  } 
+            \arrow[d, "{\eta_{B,B''}}"] \\
+            \mathcal{M}_{n \times m} \times \mathcal{M}_{m \times r}  
+            \arrow[r, "\cdot"]
+             & \mathcal{M}_{n \times r}                        
+        \end{tikzcd}
+    \end{center}
+\end{theorem}
+
+\begin{proof}
+    这个证明是简单的, 主要是为了展示线性映射主要的证明思路. 
+    我们的证明总是顺应引理 \ref{lemma linear mapping} 进行的, 
+    也就是说我们只要关心线性映射在基上的映射即可. 
+    只需要注意到
+    $$ \begin{aligned}
+    (\psi \circ \varphi(\boldsymbol{v}_1),\cdots 
+    \psi \circ \varphi(\boldsymbol{v}_r) ) 
+    &= (\psi (\varphi(\boldsymbol{v}_1)),\cdots 
+    \psi(\varphi(\boldsymbol{v}_r)) ) \\
+    &= \left(\psi\left(\sum\limits_{i=1}^{m}a_{i1}
+    \boldsymbol{w}_i\right),\cdots,
+    \psi\left(\sum\limits_{i=1}^{m}a_{ir}
+    \boldsymbol{w}_i\right) \right) \\
+    &= \left(\sum\limits_{i=1}^{m}a_{i1}\psi\left(
+    \boldsymbol{w}_i\right),\cdots,
+    \sum\limits_{i=1}^{m}a_{ir}\psi\left(
+    \boldsymbol{w}_i\right) \right) \\
+    &= (\psi(\boldsymbol{w}_1),\cdots,\psi(\boldsymbol{w}_m))
+    \boldsymbol{A}\\
+    &= (\boldsymbol{u}_1,\cdots,\boldsymbol{u}_n)\boldsymbol{BA}
+    \end{aligned}$$
+    于是, 
+    $$\eta_{B,B''}(\psi \circ \varphi) = \boldsymbol{BA} 
+    = \eta_{B',B''}(\psi)  \eta_{B,B'}(\varphi).$$
+\end{proof}
+
+现在我们把视野收紧为线性变换, 注意到一般而言我们默认线性变换的表示矩阵
+是对应于同一个基的, 也就是说我们取的自然同构是 $\eta_{B,B}$. 
+于是我们能够得出一个相当漂亮的推论: 在 $F$-代数意义下, 
+线性变换与其表示矩阵完全等价. 而我们对线性变换的讨论不超过 $F$-代数, 
+从而实际线性变换就是与其表示矩阵等价的. 这是我们建立自然同构的核心意义. 
+
+\begin{corollary}
+    设 $V$ 是 $F$ 上的 $n$ 维线性空间, 
+    固定一个基 
+    $B=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)$. 
+    则对于 $F$-代数 $\mathcal{L}(V)$, 
+    自然同构 $\eta_{B,B}$ 是一个 $F$-代数同构. 
+\end{corollary}
+
+\begin{proof}
+    由自然同构的复合性质, 对于任意 $\varphi, \psi \in \mathcal{L}(V)$ 
+    有 
+    $$\eta_{B,B}(\psi \circ \varphi) = 
+    \eta_{B,B}(\psi) \circ \eta_{B,B}(\varphi)$$ 
+    从而 $\eta_{B,B}$ 保持乘法, 构成 $\mathcal{L}(V)$ 上的环同态. 
+    又知 $\eta_{B,B} \in \mathcal{L}(V,F^n)$ 是一个线性同构, 
+    从而 $\eta_{B,B}$ 是一个 $F$-代数同构. 
+\end{proof}
+
+\begin{corollary}
+    对于上述的代数同构 $\eta_{B,B}$ 有如下的性质: 
+    \begin{enumerate}[(1)]
+        \item $\eta_{B,B}(id_V) = \boldsymbol{I}_n$. 
+        \item $\varphi$ 是 $V$ 上的自同构 (可逆) 当且仅当 
+        $\eta_{B,B}(\varphi)$ 是可逆矩阵, 且此时有 
+        $$ \eta_{B,B}(\varphi^{-1}) = \eta_{B,B}(\varphi)^{-1}.$$
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    皆循从环同态 (对应乘法群同态) 的性质. 
+\end{proof}
+
+以上是给定基 $B,B'$ 时的情况. 但是对于线性空间, 我们总是更加希望讨论
+无关于基的选择的性质. 一方面, 这直接联系上几何问题的研究, 几何代数化的
+思想总是从嵌入一个不那么自然的笛卡尔坐标系开始的, 可几何的本质是无关于
+坐标系的, 早在公元前希腊人们就开始研究椭圆曲线等几何, 而那时根本没有坐标系
+这一看似简单却大大改变了数学的工具. 用我们所浅尝过的不变量理论来讲, 
+我们总是希望追求与坐标无关的不变量. 另一方面, 线性空间的基并非那么显然
+能够找到的. 
+
+\begin{example}
+    考虑线性空间 $V= F^{\infty}$ 表示域 $F$ 上的所有序列, 
+    当 $F =\mathbb{R}$ 时, 就是数学分析中考虑的所有实数列. 
+    我们可以按坐标来赋予加法和数乘从而构成线性空间. 
+    它显然是一个无穷维线性空间, 我们自然地会想到, 
+    $\boldsymbol{e}_1=(1,0,0,\cdots)$, 
+    $\boldsymbol{e}_2=(0,1,0,\cdots,)$, 
+    $\boldsymbol{e}_3=(0,0,1,\cdots,)$, $\cdots$ 也许是它的一组基, 
+    它的线性无关性是显然的, 因为线性表示的有限和要求使得它总是取得
+    有限个 $\boldsymbol{e}_i$ 从而转换为某个 $F^m$ 上的情形 
+    (就像我们在基的存在性证明中所做的那样). 
+    但是, 它并不能线性表出 $V$. 
+    比如说 $(1,1,1,\cdots,1,\cdots)$ 它永远无法被 
+    $\boldsymbol{e}_1,\boldsymbol{e}_2,\boldsymbol{e}_3,\cdots$ 
+    的有限和表示出来. 
+    事实上, 能够证明, $\mathrm{dim}\,V = \aleph_1$, 
+    即与 $\mathbb{R}$ 等势, 我们尚且无法说明实数有多少, 
+    又怎么能说明 $V$ 的基呢? 
+\end{example}
+
+接下来我们就来研究基的变换究竟怎样改变线性映射的. 
+
+\begin{lemma}
+    设 $V$ 为域 $F$ 上的 $n$ 维线性空间, 其上有两组基 
+    $B=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)$ 
+    和 $B'=(\boldsymbol{v}'_1,\cdots,\boldsymbol{v}'_n)$.
+    
+    \begin{itemize}
+        \item 设其基 $B$ 到基 $B'$ 的过渡矩阵为 $\boldsymbol{P}$, 
+        则基过渡矩阵决定了一个自同构, 
+        我们称其为基 $B$ 到 $B'$ 的基过渡变换 
+        $$\theta_{B \to B'} = \eta_{B,B}^{-1}(\boldsymbol{P}),$$
+        其满足 $\theta_{B \to B'}(\boldsymbol{v}_i) = \boldsymbol{v}_i'$. 
+        
+        \item 在这层意义之下, 基 $B'$ 到基 $B$ 的过渡矩阵为 
+        $$\eta_{B',B'}(\theta_{B' \to B})=\boldsymbol{P}^{-1}.$$ 
+        其中 $\theta_{B' \to B} = \theta_{B \to B'}^{-1}$. 
+
+        \item 于是 $V$ 在基 $B'$ 下的自然同构为 
+        $$\eta_{B'} = \theta_{B \to B'} \circ \eta_{B}. $$
+    \end{itemize}
+
+    交换图如下: 
+    \begin{center}
+        \begin{tikzcd}
+            V \arrow[r,"\eta_{B \to B'}"] \arrow[d,"\eta_B"]
+            \arrow[dr,"\eta_{B'}"] & V \arrow[d,"\eta_{B}"] \\
+            F^n \arrow[r,"\boldsymbol{P}"] & F^n
+        \end{tikzcd}
+    \end{center}
+\end{lemma}
+
+\begin{proof}
+    我们展开 $\theta_{B \to B'}$: 
+    $$ 
+    (\theta_{B \to B'}(\boldsymbol{v}_1),\cdots,
+    \theta_{B \to B'}(\boldsymbol{v}_n)) = 
+    (\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)\boldsymbol{P}
+    = (\boldsymbol{v}_1',\cdots,\boldsymbol{v}_n')
+    $$
+    而因为自然同构, $\theta_{B \to B'}$ 构成满足 
+    $\theta_{B \to B'}(\boldsymbol{v}_i) = \boldsymbol{v}_i'$ 
+    的线性自同构. 
+
+    另一边, 只需注意到基的过渡, 逆映射为 $\theta_{B' \to B}$ 是显然的. 
+    而 
+    $$ 
+    (\theta_{B' \to B}(\boldsymbol{v}_1'),\cdots,
+    \theta_{B' \to B}(\boldsymbol{v}_n')) = 
+    (\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n) =
+    (\boldsymbol{v}_1',\cdots,\boldsymbol{v}_n')\boldsymbol{P}^{-1}
+    $$
+    因此 $\eta_{B',B'}(\theta_{B' \to B})=\boldsymbol{P}^{-1}$.
+
+    最后, 我们验证中间的斜向下箭头的交换性, 为了方便我们直接验证 
+    $ \eta_{B'} = \boldsymbol{P}\cdot \eta_{B} $. 
+    翻译成我们原有的语言就是, 任一向量 $\boldsymbol{v}$ 在基 $B'$ 
+    下的坐标 
+    $$\eta_{B'}(\boldsymbol{v})=\boldsymbol{y}= 
+    \boldsymbol{Px}=\boldsymbol{P}\eta_{B}(\boldsymbol{v})$$
+    其中 $\boldsymbol{x}=\eta_{B}(\boldsymbol{v})$ 为 $\boldsymbol{v}$ 
+    在基 $B$ 下的坐标. 
+\end{proof}
+
+\begin{theorem}
+    设 $V$ 为域 $F$ 上的 $n$ 维线性空间, 其上有两组基 
+    $B_V=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)$ 
+    和 $B_V'=(\boldsymbol{v}'_1,\cdots,\boldsymbol{v}'_n)$, 
+    它们之间的过渡矩阵为 $\boldsymbol{P}$. 
+    设 $U$ 为域 $F$ 上的 $m$ 维线性空间, 其上有两组基 
+    $B_u=(\boldsymbol{u}_1,\cdots,\boldsymbol{u}_m)$ 
+    和 $B_U'=(\boldsymbol{u}'_1,\cdots,\boldsymbol{u}'_m)$, 
+    它们之间的过渡矩阵为 $\boldsymbol{Q}$. 
+    设线性映射 $\varphi : V \to U$, 并且 
+    $\eta_{B_V,B_U}(\varphi) =\boldsymbol{A}$ 
+    则其满足 
+    $$\begin{aligned}
+    \eta_{B_V',B_U'}(\varphi) 
+    &=\eta_{B_U'} \circ  \varphi \circ \eta_{B_V'}^{-1}\\
+    &= \eta_{B_U} (\theta_{B_U \to B_U'}\circ  \varphi \circ 
+    \theta_{B_V' \to B_V'}) \eta_{B_V}^{-1}\\
+    &= \boldsymbol{Q}^{-1}( \eta_{B_U} \varphi \eta_{B_V}^{-1} )
+    \boldsymbol{P} \\
+    &= \boldsymbol{Q}^{-1} \eta_{B_V,B_U}(\varphi)
+    \boldsymbol{P} \\
+    &= \boldsymbol{Q}^{-1}\boldsymbol{A}\boldsymbol{P} 
+    \end{aligned}$$
+    
+    交换图如下: 
+    \begin{center}
+    \begin{tikzcd}
+V \arrow[rr, "\boldsymbol{\varphi}"] \arrow[rd, "\boldsymbol{\theta}_{B_V \to B_V'}"] 
+\arrow[dd, "\boldsymbol{\eta}_{B_V}" description] 
+\arrow[rddd, "\boldsymbol{\eta}_{B_V'}" description] &    & U 
+\arrow[rd, "\boldsymbol{\theta}_{B_U \to B_U'}"] 
+\arrow[dd, "\boldsymbol{\eta}_{B_U}" description, dashed] 
+\arrow[rddd, "\boldsymbol{\eta}_{B_U'}" description, dashed] &    \\
+& V \arrow[dd, "\boldsymbol{\eta}_{B_V}" description] \arrow[rr] & 
+  & U \arrow[dd, "\boldsymbol{\eta}_{B_U}" description] \\
+F^n \arrow[rr, dashed] \arrow[rd, "\boldsymbol{P}"']  
+&   & F^m \arrow[rd, "\boldsymbol{Q}"', dashed]   &   \\
+ & F^n \arrow[rr]   &  & F^m    
+\end{tikzcd}
+    \end{center}
+    
+\end{theorem}
+
+\begin{proof}
+    依旧是按照基来验证: 
+    $$\begin{aligned}
+        \left( \varphi\left( \boldsymbol{v_1'} \right),
+        \cdots ,\varphi\left( \boldsymbol{v_n'} \right)
+        \right) 
+        &= \left( \varphi\left( \sum\limits_{i=1}^{n}
+        p_{i1}\boldsymbol{v_1} \right),
+        \cdots ,\varphi\left( \sum\limits_{i=1}^{n}
+        p_{in}\boldsymbol{v_n} \right) 
+        \right) \\
+        &= \left( \sum\limits_{i=1}^{n}
+        p_{i1}\varphi\left( \boldsymbol{v_1} \right),
+        \cdots ,\sum\limits_{i=1}^{n}
+        p_{in}\varphi\left( \boldsymbol{v_n} \right) 
+        \right) \\
+        &= (\varphi\left( \boldsymbol{v_1} \right),
+        \cdots ,\varphi\left( \boldsymbol{v_n} \right) )
+        \boldsymbol{P}\\
+        &=(\boldsymbol{u}_1,\cdots,\boldsymbol{u}_m)
+        \boldsymbol{A}\boldsymbol{P}\\
+        &=(\boldsymbol{u}_1',\cdots,\boldsymbol{u}_m')
+        \boldsymbol{Q}^{-1}\boldsymbol{A}\boldsymbol{P}
+    \end{aligned}$$
+\end{proof}
+
+我们可以得到多条推论. 
+
+\begin{corollary}
+    设 $V$ 为域 $F$ 上的 $n$ 维线性空间, 其上有两组基 
+    $B=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)$ 
+    和 $B'=(\boldsymbol{v}'_1,\cdots,\boldsymbol{v}'_n)$. 
+    设其基 $B$ 到基 $B'$ 的过渡矩阵为 $\boldsymbol{P}$, 
+    设线性变换 $\varphi \in \mathcal{L}(V)$, 
+    若 $\varphi$ 在基 $B$ 下的表示矩阵为 $\boldsymbol{A}$, 
+    则 $\varphi$ 在基 $B'$ 下的表示矩阵为 
+    $\boldsymbol{P}^{-1}\boldsymbol{A}\boldsymbol{P}$. 
+\end{corollary}
+
+\begin{proof}
+    简化的交换图如下: 
+    \begin{center}
+        \begin{tikzcd}
+            V \arrow[dd, "\boldsymbol{\eta}_{B'}" description] 
+            \arrow[rd, "\boldsymbol{\eta}_{B}" description] 
+            \arrow[rr, "\boldsymbol{\varphi}"] & 
+            & V \arrow[rd, "\boldsymbol{\eta}_{B}" description] 
+            \arrow[dd, "\boldsymbol{\eta}_{B'}"] & \\
+              & F^n \arrow[rr, "\boldsymbol{A}"'] 
+              \arrow[ld, "\boldsymbol{P}"] &  
+               & F^n \arrow[ld, "\boldsymbol{P}"] \\
+            F^n \arrow[rr, dotted]  &  & F^n   &  
+        \end{tikzcd}
+    \end{center}
+\end{proof}
+
+如下的定理是我们如此多交换图得到的胜利果实. 
+
+\begin{theorem}
+    设 $V$ 为域 $F$ 上的 $n$ 维线性空间, 
+    $U$ 为域 $F$ 上的 $m$ 维线性空间, 它们分别有一个基 
+    $B_V=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)$ 
+    和 $B_U=(\boldsymbol{u}_1,\cdots,\boldsymbol{u}_m)$. 
+    设线性映射 $\varphi : V \to U$, 并且它的表示矩阵为 
+    $\eta_{B_V,B_U}(\varphi) =\boldsymbol{A} \in 
+    \mathcal{M}_{m\times n}$. 
+    另有一个矩阵 $\boldsymbol{B} \in \mathcal{M}_{m\times n} $, 
+    则下面三个条件等价: 
+    \begin{enumerate}[(1)]
+        \item $\boldsymbol{A}$ 与 $\boldsymbol{B}$ 相抵. 
+        \item $\mathrm{rank}(\boldsymbol{A})=
+        \mathrm{rank}(\boldsymbol{B})$. 
+        \item 存在 $V$ 的另外一个基 
+        $B_V'=(\boldsymbol{v}'_1,\cdots,\boldsymbol{v}'_n)$ 
+        和 $U$ 的另外一个基 
+        $B_U'=(\boldsymbol{u}'_1,\cdots,\boldsymbol{u}'_m)$ 
+        使得 $\varphi$ 在 $B_V',B_U'$ 下的表示矩阵为 
+        $\eta_{B_V',B_U'}(\varphi) = \boldsymbol{B}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    由刚刚的定理, 我们已证明 $(3) \Rightarrow (1)$, 
+    而 $(1)\Leftrightarrow(2)$ 是不必多说的结论, 
+    我们仅需证明 $(1) \Rightarrow (3)$. 
+
+    已知 $\boldsymbol{A}$ 与 $\boldsymbol{B}$ 相抵, 
+    即存在可逆矩阵 $\boldsymbol{P}$ 和 $\boldsymbol{Q}$ 
+    使得 $\boldsymbol{B} = \boldsymbol{P}\boldsymbol{A}\boldsymbol{Q}$. 
+    选择基过渡变换 
+    $\theta_{B_V \to B_V'} = \eta_{B_V,B_V}(\boldsymbol{Q})$ 
+    它是一个自同构因此 
+    $\boldsymbol{v}_i' = \theta_{B_V \to B_V'}(\boldsymbol{v}_i)$ 
+    所决定的向量组 $B_V'= (\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n')$ 
+    构成 $V$ 的一个基. 
+    同理亦可导出基过渡变换 
+    $\theta_{B_V \to B_V'} = \eta_{B_V,B_V}(\boldsymbol{Q}^{-1})$ 
+    和基 
+    $\boldsymbol{u}_i' = \theta_{B_U \to B_U'}(\boldsymbol{u}_i)$ 
+    不难验证 $\varphi$ 在它们之下的表示矩阵为 $\boldsymbol{B}$. 
+
+\end{proof}
+
+从而我们得出了: 线性映射对应的表示矩阵的秩与基的选择无关. 
+因此, 我们可以定义 $\mathrm{rank}(\varphi)$ 为其任意一个表示矩阵的秩. 
+更加严格地, 后续我们会定义 
+$\mathrm{rank}(\varphi) = \mathrm{dim}(\mathrm{Im}\,\varphi)$ 
+为其像空间的维数. 
+同时, 为了简化讨论, 我们总是希望表示矩阵尽可能地简单, 
+于是我们可以定义一个典范的表示矩阵, 如若我们可以自由选择两边的基, 
+我们就可以寻找最简单的表示矩阵, 那么这自然是典范标准形. 
+
+假设 $\mathrm{rank}(\varphi)=r\leq \min{m,n}$, 
+则我们定义其典范表示矩阵为 
+$$ \mathcal{M}(\varphi) = \begin{pmatrix}
+    \boldsymbol{I}_r & \boldsymbol{O}_{r,n-r} \\
+    \boldsymbol{O}_{m-r,r} & \boldsymbol{O}_{m-r,n-r}
+\end{pmatrix} $$
+
+这终归是有些太过自由了. 当考虑为线性变换的时候, 
+这仍然要求我们将线性变换放在两个基下面考虑, 不符合我们的需求. 
+而选择任意一个基就转换成矩阵的另一等价关系: \textbf{相似}. 
+
+\begin{theorem}
+    设 $V$ 为域 $F$ 上的 $n$ 维线性空间, 
+    给定一个基 $B=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_n)$. 
+    设线性变换 $\varphi \in \mathcal{L}(V)$, 并且它的表示矩阵为 
+    $\eta_{B,B}(\varphi) =\boldsymbol{A} \in 
+    \mathcal{M}_{n\times n}$. 
+    另有一个矩阵 $\boldsymbol{B} \in \mathcal{M}_{n\times n} $, 
+    则下面三个条件等价: 
+    \begin{enumerate}[(1)]
+        \item $\boldsymbol{A}$ 与 $\boldsymbol{B}$ 相似, 即存在
+        一个可逆矩阵 $\boldsymbol{P}\in \mathcal{M}_{n\times n}$ 
+        使得 $\boldsymbol{B} = \boldsymbol{P}^{-1}\boldsymbol{A}
+        \boldsymbol{P}$. 
+        \item $\boldsymbol{A}$ 与 $\boldsymbol{B}$ 
+        拥有相同的不变因子组. 
+        \item 存在 $V$ 的另外一个基 
+        $B'=(\boldsymbol{v}'_1,\cdots,\boldsymbol{v}'_n)$ 
+        使得 $\varphi$ 在 $B'$ 下的表示矩阵为 
+        $\eta_{B',B'}(\varphi) = \boldsymbol{B}$. 
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    同上一定理类似证明. 
+\end{proof}
+
+同样地, 我们定义线性变换 $\varphi$ 的典范表示矩阵
+为其某一表示矩阵 $\boldsymbol{A}$ 的 Frobenius 标准型, 
+特别地, 当 $F = \mathbb{C}$ 时, 我们定义 
+$\mathcal{M}(\varphi) = \boldsymbol{J}$ 为其 Jordan 标准型. 
+于是我们也可以定义特征值等东西了, 我们在后续会用线性空间的语言来重新
+叙述对角化和相似标准型的理论. 
+
+
+\end{document}

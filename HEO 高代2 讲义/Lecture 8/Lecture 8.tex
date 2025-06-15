@@ -1,0 +1,1055 @@
+\documentclass[UTF8]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{bookmark}
+\usepackage{ctex} %这是中文latex必需品
+\usepackage{lipsum}
+\usepackage{amsmath, amsthm, amssymb, amsfonts,mathrsfs} %latex写数学的必需品
+\usepackage{thmtools} %定理环境的工具
+\usepackage{graphicx} %图片设置的工具
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float} %设置图片位置
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz-cd} %用tikz画图的工具
+\usepackage[most]{tcolorbox}
+\usepackage{enumerate} %序号
+\usepackage[center]{titlesec}
+\usepackage{arydshln} % 矩阵画虚线
+
+\usetikzlibrary{positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+
+%定义颜色，可以根据需求自己修改
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{Lightblue}{Blue!15}
+\colorlet{Lightpurple}{Purple!15}
+\colorlet{LightRed}{Red!15}
+\colorlet{LightYellow}{Yellow!15}
+\colorlet{LightCyan}{Cyan!15}
+\colorlet{LightAquamarine}{Aquamarine!15}
+\colorlet{LightCadetBlue}{CadetBlue!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\newtheorem{corollary}{Corollary}[section]
+\newenvironment{solution}{{\noindent\it Solution.} }{\hfill $\square$\par}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={定理}]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={定义}]{definition}
+\tcolorboxenvironment{definition}{colback=LightCyan,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Remark,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={注记}]{remark}
+\tcolorboxenvironment{remark}{colback=LightRed,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Lemma,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={引理}]{lemma}
+\tcolorboxenvironment{lemma}{colback=Lightblue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Corollary,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={推论}]{Corollary}
+\tcolorboxenvironment{corollary}{colback=Lightpurple,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section,refname={命题}]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Example,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section,refname={例}]{example}
+\tcolorboxenvironment{example}{colback=LightGreen,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Exercise,]{prosty}
+\declaretheorem[style=prosty,numberwithin=chapter]{exercise}
+\tcolorboxenvironment{exercise}{colback=LightAquamarine,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Hint \& Answer,]{prosty}
+\declaretheorem[style=prosty,numberwithin=chapter]{answer}
+\tcolorboxenvironment{answer}{colback=LightCadetBlue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother %罗马数字的简洁打法
+
+% 修改 Chapter 为 Lecture
+
+\titleformat{\chapter}{\raggedright\Huge\bfseries}{Lecture \thechapter}{1em}{}
+\titleformat{\section}{\raggedright\Large\bfseries}{\,\thesection\,}{1em}{}
+\titleformat{\subsection}{\raggedright\large\bfseries}{\,\thesubsection\,}{1em}{}
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% 设置 PDF 文件信息
+%\hypersetup{
+%	pdfauthor = {章梓杭},
+%	pdftitle = {巴猪数学讲义 第一卷:数学分析},
+%	pdfkeywords = {Analysis},
+%	CJKbookmarks = true}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% 封面设计如下：
+% ------------------------------------------------------------------------------
+
+%\setCJKfamilyfont{coverfont}{SIMKAI.TTF}	% 设置书名字体
+%\setCJKfamilyfont{cover-author-font}{SIMSUN.TTF}	% 设置作者字体
+
+% 设置标题样式
+
+\begin{titlepage}
+    \vspace*{10em}
+\begin{center}
+    \zihao{0} % 一号字大小，可根据需要调整
+    \textbf{\songti 高等代数选讲} \\ % 加粗宋体显示“高等代数”
+    \vspace{4em} % 增加一些垂直间距
+    \zihao{4} % 四号字大小，可根据需要调整
+    作者: ZZH \\ % 第二行写作者
+    \vspace{10em} % 增加垂直间距
+
+    % 页面下方写免责声明
+    \zihao{5} % 五号字大小，可根据需要调整
+    本讲义使用于 HEO 高等代数\Rmnum{2} 课程中, \\
+    内容由 \LaTeX 编译, 图片使用 GeoGebra 绘制. \\
+    参考多部书目, 仅用作学习讨论和笔记需求. 如有错误, 欢迎指正. \\
+    使用时间 2025/4/29\\
+
+    最后编译时间 \today\\
+\end{center}
+
+\end{titlepage} 
+
+\newpage
+
+\vspace*{5em}
+
+每逢拾笔, 愿母亲安康. 
+
+本笔记摘选自 巴猪数学讲义: 第二卷 高等代数. 
+
+谨以彼书赠与女友与巴猪的陪伴. 
+
+祝诸位在数学上逢见挚爱. 
+
+\vspace*{5em}
+
+摘自 Grassmann 扩张论. 您的理论如今已是大学入学必学的课程. 
+
+\begin{quotation}
+    \kaishu
+    我始终坚信我在此科学上所付出的劳动不会白费, 它耗尽了我生命中最重要的阶段, 
+    让我付出了超常的努力. 我当然知道我给出的这门科学的形式还不完善, 
+    它一定是不完善的. 但是, 我知道而且有义务在此声明 (可能有人会认为我很狂妄), 
+    即使这一成果再过十七年或更长时间还不被使用, 也没有真正融入到科学的发展之中, 
+    它冲出遗忘的尘埃现身的时候也一定会到来, 现在沉睡着的思想结出硕果的那一天一定会到来. 
+    我知道, 如果我今天还不能 (如我至今徒劳地期望那样) 把学者们吸引到我的周围, 
+    用这些思想帮助他们成果累累, 促使其进步, 丰富其学识, 
+    那么这种思想在将来一定会重生, 或许以另一种新形式, 与时代发展水乳交融. 
+    因为真理是永恒不灭的. 
+    \songti
+\end{quotation}
+
+\vspace*{5em}
+
+摘自 Grothendieck 丰收与播种. 愿数学的远端没有硝烟. 
+
+\begin{quotation}
+    
+    \kaishu   
+    我可以用同样的坚果意象来说明第二种方法: 
+    
+    第一种类比: 
+    我首先想到的是将坚果浸泡在某种软化液体中——为何不直接用水呢? 
+    你偶尔摩擦坚果以促进液体渗透,其余时间则静待其变. 
+    经过数周甚至数月, 外壳逐渐变得柔软——当时机成熟, 仅需用手轻轻一压, 
+    它便会如完美成熟的牛油果般自然裂开! 
+
+    几周前, 我的脑海中闪现了另一幅图像. 
+      
+    那片等待被理解的未知, 仿佛一片坚硬的土地或泥灰岩, 抗拒着侵入\dots
+    而海水无声无息地悄然上涨, 看似毫无动静, 潮水遥远得几乎听不见声响\dots 
+    但它终将温柔包裹住那顽固的物体. 
+    
+\end{quotation}
+
+代数就是这片 Rising Sea. 
+
+\setcounter{chapter}{7}
+\chapter{线性映射}
+\section{线性映射}
+
+在本节的开始, 我们先说明数学的一则要义. 
+
+我们研究数学, 一般分为两种视角. 
+一种是针对具体的问题, 比如我们在绪论中提到的 
+18 世纪的数学家们求解各种方程的过程. 针对具体的问题寻找适当的解法, 
+其中必定要开发或者使用很多的工具, 有些工具或许都不一定正确, 但是为了
+让直觉引领研究, 适当忽略过多的细节是必要的, 回过头来还可以从中开发出各种工具. 
+大多数学科都是在这种过程中诞生的, 例如微积分源自 Newton 和 Lebinz 同时
+发现了微积分基本定理, 泛函分析源自 Jakob Bernoulli 解决最速降线的变分法, 
+群论和域论源自 Galois 解决多项式方程的根式解问题. 
+
+但是显然, 这一过程中得到的学科萌芽, 距离我们现在所学习到的课本内容相去甚远, 
+其原因是它们尚未有明晰的结构框架. 
+比如说, 我们知道微积分基本定理, 可 Newton 甚至说不清楚极限是什么, 
+而关于积分是什么更是要交由 19 世纪的 Riemann 给出; 
+我们知道变分法的思想是泛函分析的启蒙, 但是泛函分析所处的空间的基本理论, 
+要到 Hilbert 和 Banach 建立起内积空间和赋范线性空间之后了, 
+而这至少需要点集拓扑学和线性代数学的双重推动; 
+Galois 的确解决了根式解的问题, 但他那十几页的论文当然无法囊括清晰明了
+的证明, 他甚至没有真正地给出过群的定义, 而他对有限域的研究所依赖的
+一则定理 (对域 $F$ 上的任意多项式 $f$ 都存在一个域扩张 $E/F$ 使
+$f$ 在 $E$ 上可分, 我们只用对 $f$ 的次数使用归纳法, 利用之前不可约多项式
+的定理就可证明) 直到他去世后半个世纪才由 Kronecker 给出证明, 
+而 Galois 理论中的很多内容都是由 Artin, Dedekind 等人不断完善才有了如今
+完整的理论. 
+
+因此, 我们另一视角就是从各种数学结构上来研究. 因为其连贯的逻辑顺序, 
+我们如今的大多数教材都会采用此种顺序. 关于这两种视角的阐述可以参考
+我们在绪论中关于近世代数的 "结构" 一词. 
+
+我们来罗列一些学科, 也是一些方向上的结构. 
+数学分析中我们研究的结构是实数空间和高维的 $\mathbb{R}^n$ 空间, 
+在其上我们会研究各种各样的函数, 如\textbf{连续函数}, \textbf{可微函数}, 
+\textbf{可积函数}; 
+点集拓扑学中我们研究的结构是\textbf{拓扑空间}, 它是对 $\mathbb{R}^n$ 中的开集这一概念
+的抽象, 在其上我们往往研究的是依赖于其拓扑结构的\textbf{连续映射}以及
+\textbf{同胚映射}; 
+实变函数中我们研究的结构是\textbf{测度空间}, 
+在其上我们研究的是依赖于其测度和 $\sigma$-代数结构的\textbf{可测函数}; 
+抽象代数中我们研究的结构是\textbf{代数结构}, 如群环域模, 
+在其上我们研究的是保持代数运算性质的\textbf{同态映射}. 
+在这些结构中, 我们总是会研究各种各样的映射, 函数是其中比较特殊的一类, 
+我们可以理解为函数是为空间中的点赋值, 而一般的映射往往是从一个结构中的
+一个空间打到同一个结构中的另一个空间的箭头. 
+
+我们要研究同一个结构下两个空间之间的关系, 必然是要研究空间中的映射. 
+我们上述罗列的所有例子, 本质都是映射, 而映射仅仅是依赖于空间的集合结构, 
+那么空间中额外的一些性质 (如实数的完备性) 就无法得到刻画 (无法描绘极限). 
+两个空间之间最重要的一类映射, 一定是刻画了所属空间在结构上的特征. 
+比如说: 连续函数保持了点列的极限 (Heine 归结原理), 
+同胚映射保持了拓扑空间的性质 (甜甜圈可变为咖啡杯, 但球不能变成甜甜圈, 
+因为中间要打洞), 
+同态映射保持了代数结构中的运算从而注入了代数结构的完整信息. 
+
+我们发现很多方向的研究其实是有其相似性的, 为了将这些内容统一起来, 
+数学家们创造了\textbf{范畴}的语言, 我们在本节为了体现这数学的统一性, 
+会插入如此的语言. 不用紧张, 无非是一套语言罢了 (或者用专业术语, 
+是抽象废话 abstract nonsense). 
+
+\subsection{映射}
+
+为了介绍线性映射, 我们先回顾一下普通的映射.
+
+\begin{definition}
+    \textbf{映射} 
+    设两个集合 $A$ 和 $B$, 假设在它们之间存在某种对应法则, 使得对于任一
+    $x\in A$, 都存在\textbf{唯一的} $f(x) \in B$ 与之对应, 则称
+    $$
+    \begin{aligned}
+        f: A &\to B \\
+        x &\mapsto f(x)
+    \end{aligned}
+    $$
+    为一个定义域为 $A$, 值域为 $B$, 对应法则为 $f$ 的一个 (映射). 
+
+    \begin{itemize}
+        \item  一个映射无非就是 $A$ 和 $B$ 的二元组: 
+        $ \{(x,f(x)):\,x \in A, f(x)\in B\} \subset A\times B $, 
+        唯一性从 $f(x)$ 是确定的唯一元素来体现. 
+        循此要义, 称映射 $f$ 和 $g$ 相等是指它们具有相同的定义域, 
+        并且在定义域上的每个点映出的像相同, 即 $\forall x \in A, \,
+        f(x)=g(x)$. 
+
+        \item 我们常说一个映射是\textbf{良定的 well-defined} 是指
+        如下的映射本质: 
+        $$ x = y \Longrightarrow f(x) = f(y) $$
+        注意, 当我们的 $A$ 取为等价类时, 我们常常取定的对应关系往往
+        是根据一个代表元 $x \in [x]$ 决定的, 即 $f([x])= g(x)$, 
+        那么我们就要验证代表元的选择与映射无关, 即 
+        $x\sim y \Longrightarrow g(x) = g(y)$ 从而 $f$ 才良定. 
+        
+        \item 称一个映射为
+        \textbf{单射 injection }意指定义域中不同的点绝不会经 $f$ 映出相同的像,
+        即 $f(x) = f(y) \Longleftrightarrow x =y$; 
+        称一个映射为\textbf{满射 surjection }意指值域中的每个点都可以由 
+        $f$ 中的点所映出,
+        即 $\forall y \in B,\,\exists\,x\in A$ s.t. $y=f(x)$; 
+        称一个映射为
+        \textbf{双射 bijection }意指它既是单射和满射的映射, 
+        又称\textbf{1-1映射}. 
+        
+        \item 我们往往称定义域集合 $A$ 上的元素 $x \in A$ 为点, 
+        而 $f$ 则是其上的一个映射法则, 
+        所映射出的 $y=f(x)$ 则称作 $x$ 在 $f$ 下的\textbf{像}, 
+        顺着这层含义, $x$ 也被称作 $y=f(x)$ 在 $f$ 下的\textbf{原像}. 
+    
+        对于子集 $A_0\subset A$, 
+        定义 $f(A_0):=\{f(x):x\in A_0\}\subset B$, 
+        称 $f(A_0)$ 为 $A_0$ 在 $f$ 下的\textbf{像集}; 
+        反过来, 对于子集 $B_0\subset B$ , 定义 
+        $f^{-1}(B_0):=\{x:f(x)\in Y_0\}\subset X$,
+        称$f(B_0)$ 为 $B_0$ 在 $f$ 下的\textbf{原像集}, 
+        它可以是空集. 
+        特别地, 值域记为 $\mathrm{Im}\,f := f(A)$. 
+        于是 $f$ 是满射当且仅当 $\mathrm{Im}\,f := Y$. 
+
+        \item 若两个集合满足 $A\subset B$, 
+        则存在一个包含映射 $j$, 满足 $j(x) = x$. 
+        特别地, 当 $A=B$ 时, 记 $j=id_A$ 表示恒同映射, 
+        不用区分定义域的时候简写成 $id$. 
+
+        \item 设 $f:A\to B$, $g:B\to C$, 
+        则 $g\circ f: A \to C$ 表示 $f$ 和 $g$ 的复合函数, 
+        取值对应为 $g\circ f(x) = f(g(x))$, 
+        本质上是如下的箭头: 
+        \begin{center}
+            \begin{tikzcd}
+                A \arrow[r,"f"] & B \arrow[r, "g"] & C
+            \end{tikzcd}
+        \end{center}
+
+        \item 若对映射 $f:A\to B$ 存在一个映射 
+        $g:B\to A$ 满足 $g\circ f = id_A$, 
+        则称 $g$ 为 $f$ 的一个\textbf{左逆}; 
+        若存在一个映射 
+        $h:B\to A$ 满足 $f\circ h = id_B$, 
+        则称 $h$ 为 $f$ 的一个\textbf{右逆}; 
+        若 $f$ 同时具有左逆和右逆时, 称 $f$ 可逆. 
+        此时左逆必定等于右逆, 称其为 $f$ 的逆映射, 记作 $f^{-1}$, 
+        可以证明逆映射唯一. 其本质为如下的箭头图: 
+        \begin{center}
+        \begin{tikzcd}
+            A \arrow[r, "f", shift left] & B \arrow[l, "f^{-1}", shift left]
+        \end{tikzcd}
+        \end{center}
+
+        \item 如果 $A$ 和 $B$ 之间存在一个 1-1 映射 $f:A\to B$, 
+        则称 $f$ 是 $A$ 和 $B$ 的\textbf{同构映射}, 
+        此时称 $A$ 和 $B$ 同构, 同构是一个等价关系. 
+    \end{itemize}
+\end{definition}
+
+\begin{exercise}
+    证明当 $f$ 可逆时, 左逆必定等于右逆, 此时称左逆和右逆的那个映射
+    为 $f$ 的逆映射 $f^{-1}$, 证明 $f^{-1}$ 唯一. 
+\end{exercise}
+
+\begin{proposition}
+    设 $f:A\to B$. 
+    \begin{enumerate}[(1)]
+        \item $f$ 为单射当且仅当 $f$ 具有左逆. 
+        \item $f$ 为满射当且仅当 $f$ 具有右逆. 
+    \end{enumerate}
+    因此 $f$ 同构等价于 $f$ 可逆. 
+\end{proposition}
+
+\begin{proof}
+    设 $f$ 具有左逆 $g$, 则 
+    $$f(x)=f(y) \Longrightarrow g\circ f(x) = g\circ f(y) 
+    \Longrightarrow x=y.  $$
+
+    反之设 $f$ 为单射, 则 $f_0: A \to f(A)$, $f_0(x)=f(x)$ 为 1-1 映射, 
+    从而可取 $g_0 = f_0^{-1}: f(A)\to A $ 为其逆映射. 
+    不妨设 $A$ 非空, 任取 $x_0 \in A$, 令
+    $$g(y)
+    \begin{cases}
+        g_0(y), & y \in f(A)\\
+        x_0, & y \in B-f(A)
+    \end{cases}
+    $$
+    则 $g\circ f(x) = g_0(f_0(x)) = x$, $g$ 为 $f$ 的一个左逆. 
+
+    设 $f$ 具有右逆 $h$, 则 
+    $$ \forall\,y \in B,\,y = f\circ h(y) = f(h(y)) $$ 
+    即 $y$ 是 $h(y)$ 在 $f$ 下映出的像. 
+
+    反之设 $f$ 满射, 则 $B=f(A)$, 因此每个 $f^{-1}(y)$ 非空. 
+    我们对每个 $y \in B$, 
+    任选一个 $x_y \in f^{-1}(B)$, 
+    构造 $h(y) = x_y$, 从而 $f\circ h(y) = y$, $g$ 为 $f$ 的一个右逆. 
+\end{proof}
+
+\begin{remark}
+    因为这个证明在构造左逆右逆时总是要选择元素, 因此依赖选择公理. 
+    虽然无论时代数还是分析都是无可避免地要大量使用选择公理, 
+    比如我们先前证明的基的存在性, 以及分析中的 Tarski-Banach 分球悖论
+    和 Vitali 基构造——我们总是要对选择公理以及等价的 Zorn 引理等产生
+    警觉, 能尽量使用构造性证明尽量尝试构造. 
+\end{remark}
+
+从上述证明可见左逆右逆不一定是唯一的, 而因为左逆右逆的说法只是针对映射
+本身提出来的, 规避了集合中的元素, 在更加抽象的代数中, 我们常常用左逆
+右逆的语言来描述单射满射的性质. 
+
+此外, 从上述证明中可以看出, 往往单射是更加紧要的, 因为只要一个映射是单的, 
+它总能诱导出一个 1-1 映射, 这个 1-1 映射与它的取值是完全相同的. 
+当 $A$ 到 $B$ 有一个单射时, 我们称 $A$ 嵌入 $B$, 因为 $A$ 总是与 $B$ 
+的一个子集同构, 我们不妨认为 $A$ 是 $B$ 的一个子集. 
+
+\begin{exercise}
+    记 $A$ 上的所有到自身的映射为 
+    $\mathrm{End}(A):=\{f:A\to A\}$, 
+    记 $A$ 上的所有到自身的同构映射为 
+    $\mathrm{Aut}(A):=\{f:\,f:A\to A\mbox{可逆}\}$. 
+    对上述的映射的集合赋予复合运算, 即 $(f,g) \mapsto f\circ g$
+    证明: 
+    $\mathrm{End}(A)$ 对映射的复合构成一个幺半群, 
+    $\mathrm{Aut}(A)$ 对映射的复合构成一个群. 
+\end{exercise}
+
+需要注意的是, 即使是 $\mathrm{Aut}(A)$, 交换性都几乎是不存在的. 
+在说明群的交换性时, 我们常常会用群 $G$ 的\textbf{中心 center }来刻画, 
+中心是一个子群 $Z(G):=\{z \in G: \, ag = ga, \, \forall\,g\in G\}$, 
+显然单位元 $e\in Z(G)$ 因此非空, 而 $Z(G)$ 中的元素可与群 $G$ 中的
+任意元素交换. 因此, $G$ 为 Abel 群当且仅当 $Z(G)=G$. 
+
+\begin{example}
+    设 $G = \mathrm{Aut}(\mathbb{R})$, 我们的讨论就转移到实函数上. 
+    其中最简单的一类函数应是线性函数, 并且由其单调性, 一定是可逆的, 
+    我们记为 $L=\{ax+b:\,a \in \mathbb{R}-\{0\},b \in \mathbb{R}\}$ 
+    容易验证它是 $G$ 的一个子群. 
+
+    对 $f(x)=ax+b,g(x)=cx+d \in L$, 二者可交换当且仅当 
+    $$a(cx+d)+b = c(ax+b)+d \Longleftrightarrow ad+b(1-c) =d.$$
+    因此任取 $c,d$, 由线性方程解的性质易见只有唯一解 $a=1,b=0$. 
+    换言之, $Z(L)=(e)$. 因此, $Z(G)\subset Z(L)=(e)$. 
+
+    我们想让交换性存在, 只有在 
+    $K = L=\{ax:\,a \in \mathbb{R}-\{0\}\}$ 上才有, 
+    因为 $Z(K) = K$. 
+    注意到在 $K$ 上, 有 $\forall\,f \in K$, 
+    $f(x+y)=f(x)+f(y)$ 以及 $f(kx) = kf(x)$ 对任意 $x,y,k \in \mathbb{R}$ 
+    都成立, 换言之, $K$ 是一个线性映射. 
+
+    我们虽然还没有具体地阐述线性映射的原理, 但我们早已接触过其中最重要的一类. 
+    设 $\boldsymbol{A} \in \mathcal{M}_{m,n}(F)$, 
+    令 
+    $$\begin{aligned}
+        f_{\boldsymbol{A}}: F^m &\to F^n \\
+        \boldsymbol{x} &\mapsto   \boldsymbol{Ax}  
+    \end{aligned}
+    $$
+    $f_{\boldsymbol{A}}$ 满足线性性质, 我们此后都直接用 $\boldsymbol{A}$ 
+    来表示它所诱导的线性映射 $f_{\boldsymbol{A}}$. 
+    记 $G=\mathrm{GL}(n,F)$ 表示 $F$ 上的全体 $n$ 阶可逆矩阵, 
+    显然 $\mathrm{GL}(n,F) \subset \mathrm{Aut}(F^n)$, 
+    此时矩阵的乘法对应的就是线性映射的复合, $\mathrm{GL}(n,F)$ 构成一个群. 
+    那么根据已有的矩阵知识, $Z(G) = \{k\boldsymbol{I}_n:\,k\in F-(0)\}$. 
+    而 $Z(G)$ 是 $\mathcal{M}_n(F)$ 的一个子空间, 它的维数为 1. 
+\end{example}
+
+
+
+\subsection{线性映射和线性变换}
+
+我们将目光重新挪回到线性空间上, 线性空间当然也是一种代数结构, 
+其上的性质完全是由其上的运算决定的, 因此它配备的运算必定是要满足
+线性运算的 "同态" 的. 
+
+我们实际已经接触过一大类线性映射. 考虑 $\boldsymbol{x} \in F^m$ 
+则 $\boldsymbol{A}: F^n \to F^m$ 由 $\boldsymbol{x} \mapsto \boldsymbol{Ax}$ 
+为给出的一个线性映射, 
+因为它满足 
+$$ \boldsymbol{A}(\boldsymbol{x}+\boldsymbol{y}) = 
+\boldsymbol{A}\boldsymbol{x}+\boldsymbol{A}\boldsymbol{y}$$ 
+以及 
+$$  \boldsymbol{A}(k\boldsymbol{x}) = k\boldsymbol{Ax}$$ 
+对一切 $\boldsymbol{x},\boldsymbol{y} \in F^m$ 和 $k \in F$ 都成立. 
+我们将这一性质抽象出来, 就得到了一般的线性映射. 
+
+\begin{definition}
+    \textbf{[线性映射 linear mapping]} 
+    设 $V,U$ 分别为域 $F$ 上的线性空间, 设
+    $\varphi : V \to U$ 为 $V$ 到 $U$ 的映射, 
+    如果 $\varphi$ 满足下列条件: 
+    \begin{enumerate}[(1)]
+        \item $\varphi(\boldsymbol{\alpha}+\boldsymbol{\beta})=
+        \varphi(\boldsymbol{\alpha})+\varphi(\boldsymbol{\beta}),\,\forall 
+        \boldsymbol{\alpha},\boldsymbol{\beta} \in V$.
+        
+        \item $\varphi(k\boldsymbol{\alpha})=k\varphi(\alpha)
+        \, \forall \boldsymbol{\alpha}\in V,\,\forall k \in F$.
+    \end{enumerate}
+    则称 $\varphi$ 是 $ V \to U$ 的线性映射.
+
+    \begin{itemize}
+        \item 线性映射的单和满循从映射的单和满, 特别地, 当 $\varphi$ 为双射时, 
+        称 $\varphi$ 为\textbf{线性同构}. 若两个线性空间 $V$ 和 $U$ 中存在线性同构, 
+        则我们称 $V$ 和 $U$ 线性同构, 线性空间的 (线性) 同构也是一个等价关系. 
+    
+        \item 当 $W = V$ 时, 称 $\varphi$ 为 $V$ 上的\textbf{线性变换 linear transportation}, 
+        若一个线性变换是同构, 称起为自同构. 
+
+        \item 从 $V$ 到 $U$ 的所有线性映射记为集合 
+        $ \mathcal{L}(V,U)$, 或者循范畴的记号为 $\mathrm{Hom}(V,U)$. 
+        我们后面会证明 $ \mathcal{L}(V,U)$ 是一个线性空间. 
+        记 $ \mathcal{L}(V) = \mathcal{L}(V,V)$ 表示线性变换的全体, 
+        有时也记作 $\mathrm{End}(V)$; 所有可逆线性变换的全体记为 
+        $\mathrm{Aut}(V)$ 或者 $\mathrm{GL}(V)$. 
+        我们后面会证明, 这两者不仅仅是线性空间, 在定义了另一种预算之后, 
+        分别构成幺半群和群. 
+
+        \item 当 $U=F$ 时, 称 $\varphi$ 为\textbf{线性函数}. 
+    \end{itemize}
+\end{definition}
+
+因为线性映射是从映射出发的, 一些平凡的例子是自然嵌入进来的. 
+
+\begin{example}
+    \begin{itemize}
+        \item \textbf{零映射} $\boldsymbol{0}$ 是 $V\to U$ 的线性映射, 
+        循从 $\boldsymbol{v} \mapsto \boldsymbol{0}$, 它等同于线性空间里的
+        0 元. 
+        
+        \item \textbf{恒等映射} $id_V \in \mathcal{L}(V)$ 的定义与
+        一般恒等映射的定义一样. 它等同于线性空间里的单位元. 
+        
+        \item \textbf{转置} 
+        $T: \mathcal{M}_{m\times n}(F) \to \mathcal{M}_{n\times m}(F)$ 
+        循从 $\boldsymbol{A} \mapsto \boldsymbol{A}^T$ 是一个线性映射. 
+    \end{itemize}
+\end{example}
+
+\begin{exercise}
+    验证: 
+    $$\begin{aligned}
+        \mathrm{tr}: \mathcal{M}_{n}(F) &\to F \\
+        \boldsymbol{A} &\mapsto \mathrm{tr}(A)
+    \end{aligned}$$
+    是一个线性函数. 
+\end{exercise}
+
+对于不同的线性空间, 有不同的线性映射, 这些线性映射往往反应了它们的性质. 
+
+\begin{example}
+    \begin{itemize}
+        \item 设 $C[0,1]$ 为在 $[0,1]$ 上连续的实函数全体构成的线性空间, 
+        设 
+        $$\begin{aligned}
+            \boldsymbol{S}_{[0,1]}: C[0,1] &\to \mathbb{R} \\
+                f &\mapsto \int_{0}^{1} f(x)\,\mathrm{d}x
+        \end{aligned}
+        $$
+        这是一个线性映射. 
+        
+        不定积分也有同样的结果: 
+        设 
+        $$\begin{aligned}
+            \boldsymbol{S}: C[0,1] &\to C[0,1] \\
+                f &\mapsto \int_{0}^{x} f(t)\,\mathrm{d}t
+        \end{aligned}
+        $$
+        封闭性由数学分析可以得到. 
+
+        特别地, 当限制在子空间 $F[x]$ 上时, $\boldsymbol{S}$ 为
+        线性变换. 
+
+        \item 设 $C^1[0,1]$ 为在 $[0,1]$ 上具有连续导函数的
+        实函数全体构成的线性空间, 设 
+        $$\begin{aligned}
+            \boldsymbol{D}: C^1[0,1] &\to C[0,1] \\
+                f &\mapsto f'
+        \end{aligned}
+        $$
+        这是一个线性映射. 
+
+        同样地, 当限制在子空间 $F[x]$ 上时, $\boldsymbol{D}$ 为
+        线性变换, 并且有 $\boldsymbol{DS}=id$, 但是 
+        $\boldsymbol{SD}\neq id$, 因为 
+        $\boldsymbol{SD}(1) = \boldsymbol{S}(0) = 0$. 
+
+        \item 我们先前所知有关矩阵的很多量都不是线性映射, 
+        比如: 秩, 行列式, 特征值, 正负惯性指数等. 
+    \end{itemize}
+\end{example}
+
+下面我们给出 $\mathcal{L}(V,U)$ 上的运算, 使之构成线性空间. 
+
+任取 $\varphi,\psi \in mathcal{L}(V,U)$, 定义 
+$\varphi + \psi$ 为 
+$(\varphi + \psi)(\boldsymbol{\alpha}) = 
+\varphi(\boldsymbol{\alpha})+\psi(\boldsymbol{\alpha})$. 
+循这层意义不难验证 $\varphi + \psi \in mathcal{L}(V,U)$. 
+同理, 对任意 $k\in F$ 可以定义 $k\varphi$ 为 
+$(k\varphi)(\boldsymbol{\alpha}) = k\varphi(\boldsymbol{\alpha})$ 
+它同样也是一个线性映射. 
+
+我们把所有的验证工作留给读者, 不过是定义的练习. 
+
+\begin{exercise}
+    $\mathcal{L}(V,U)$ 在上述定义的加法和数乘意义下构成 $F$ 上的线性空间. 
+\end{exercise}
+
+我们在学习的一开始会引入矩阵的乘法, 那时我们还不知晓矩阵乘法的意义, 
+随着学习的逐渐深入, 我们终于可以在此揭晓矩阵乘法蕴含的动机. 
+取 $\boldsymbol{A} \in \mathcal{M}_{m,n}(F)$, 
+$\boldsymbol{B} \in \mathcal{M}_{n,p}(F)$, 
+则 $\boldsymbol{AB}: F^p \to F^m$ 如下图所示 
+\begin{center}
+    \begin{tikzcd}
+        F^p \arrow[r,"\boldsymbol{B}"] & F^n 
+        \arrow[r,"\boldsymbol{A}"] & F^m
+    \end{tikzcd}
+\end{center}
+这是一个映射合成的关系. 
+
+在 $\mathcal{L}(V)$ 上, 我们定义线性映射的乘法为映射的复合 
+$\varphi \psi = \varphi \circ \psi$, 
+因为对任意 $\boldsymbol{\alpha},\boldsymbol{\beta} \in V$ 
+以及任意 $k \in F$ 有 
+$$ \varphi \psi(\boldsymbol{\alpha}+\boldsymbol{\beta}) 
+= \varphi(\psi(\boldsymbol{\alpha})+\psi(\boldsymbol{\beta}))
+= \varphi\psi(\boldsymbol{\alpha}) + \varphi \psi(\boldsymbol{\beta})$$
+以及 
+$$ \varphi \psi(k\boldsymbol{\alpha}) = 
+\varphi( k\psi(\boldsymbol{\alpha})) =k \varphi \psi(\boldsymbol{\alpha})$$
+所以这同样是一个代数运算, 可以验证 $\mathcal{L}(V)$ 关于乘法构成 
+幺半群, 单位元为 $id_V$, 并且有左分配律
+$$ \varphi_1(\varphi_2 + \varphi_3)(\boldsymbol{\alpha})
+= \varphi_1 (\varphi_2(\boldsymbol{\alpha})+\varphi_3(\boldsymbol{\alpha}))
+=  \varphi_1\varphi_2(\boldsymbol{\alpha}) +\varphi_1\varphi_3(\boldsymbol{\alpha}) $$
+同理可以验证右分配律, 
+从而 $\mathcal{L}(V)$ 关于加法和乘法构成环. 
+进一步, 我们把数乘拿进来, 发现有数乘与乘法的相容性: 
+$$ (k\varphi_1)\varphi_2 = k(\varphi_1 \varphi_2) = \varphi_1(k\varphi_2)$$
+这一性质在验证数乘的时候就已阐明, 
+我们称具有数乘和乘法相容性, 且关于加法和数乘构成线性空间, 关于加法和乘法构成
+环, 乘法和数乘之间具有相容性的代数结构为 
+$F$-代数. 
+
+除却抽象的线性映射, 容易验证 $F[x]$ 和 $\mathcal{M}_n(F)$ 均为 $F$-代数. 
+
+我们会在后续章节里严格地讨论代数这一结构. 
+
+
+
+\subsection{范畴与函子}
+
+在这一节中我们将建立一套统一的语言, 以刻画数学结构. 
+
+\begin{definition}
+    \textbf{[范畴 category]} 
+    一个范畴 $\mathcal{C}$ 由\textbf{对象 object }和
+    \textbf{态射 morphism }构成. 
+    所有对象构成集合 $\mathrm{Ob}(\mathcal{C})$, 
+    所有态射构成集合 $\mathrm{Mor}(\mathcal{C})$. 
+    每一个态射配备上一对映射 
+    \begin{tikzcd}
+        \mathrm{Mor}(\mathcal{C}) 
+        \arrow[r, "t"', shift right]
+        \arrow[r, "s", shift left]  
+        & \mathrm{Ob}(\mathcal{C}) 
+    \end{tikzcd}
+    其中 $s$ 和 $t$ 分别给出态射的\textbf{来源}和\textbf{目标}. 
+    对于 $X,Y \in \mathrm{Ob}(\mathcal{C})$, 记 
+    $\mathrm{Hom}_{\mathcal{C}}(X,Y):=s^{-1}(X)\cap t^{-1}(Y)$ 
+    表示 $X$ 到 $Y$ 的态射. 
+    
+    范畴中的态射还满足如下的性质: 
+    \begin{enumerate}[(1)]
+        \item 对每个对象 $X \in \mathrm{Ob}(\mathcal{C})$, 
+        都存在态射 $id_{X} \in \mathrm{Hom}_{\mathcal{C}}(X,X)$, 
+        称为 $X$ 到自身的\textbf{恒等态射}. 
+        \item 对于任意 $X,Y,Z \in \mathrm{Ob}(\mathcal{C})$, 
+        给定态射间的\textbf{合成映射}
+        $$ \begin{aligned}
+            \circ: \mathrm{Hom}_{\mathcal{C}}(Y,Z) \times 
+            \mathrm{Hom}_{\mathcal{C}}(X,Y) &\to 
+            \mathrm{Hom}_{\mathcal{C}}(X,Z) \\
+            (f,g) &\mapsto f \circ g,    
+        \end{aligned}
+        $$
+        常简记为 $fg$. 我们在 $\mathrm{Mor}(\mathcal{C})$ 
+        中配备的映射 $\circ$ 满足: 
+        \begin{enumerate}[(i)]
+            \item 结合律: 对于任意态射 $h,g,f \in \mathrm{Mor}(\mathcal{C})$, 
+            若合成 $f(gh)$ 和 $(fg)h$ 都有定义, 则 
+            $$ f(gh) = (fg)h. $$
+            \item 对于任意态射 $f \in \in \mathrm{Hom}_{\mathcal{C}}(X,Y)$, 
+            有 $f \circ id_{X} = f = id_{Y} \circ f$, 
+            $id_X$ 通过上述的性质被唯一确定. 
+        \end{enumerate}
+    \end{enumerate}
+
+    \begin{itemize}
+        \item 对象与态射皆为空集的范畴称为\textbf{空范畴}, 记作 
+        $\mathbf{0}$. 
+
+        \item 对于态射 $f:X\to Y$ 若存在一个态射 $g:Y\to X$ 
+        满足 $g\circ f = id_X$, $f\circ g = id_Y$, 
+        则称 $f$ 是\textbf{同构 isomorphism} , 
+        而 $g$ 称为 $f$ 的\textbf{逆}, 显然逆是唯一的. 
+        从 $X$ 到 $Y$ 的所有同构组成的集合记为 
+        $\mathrm{Isom}_{\mathcal{C}}(X,Y)$. 
+        
+        \item 记 
+        $\mathrm{End}_{\mathcal{C}}(X) = \mathrm{Hom}_{\mathcal{C}}(X,X)$, 
+        称作 $X$ 的\textbf{自同态}, 
+        $\mathrm{Aut}_{\mathcal{C}}(X) = \mathrm{Isom}_{\mathcal{C}}(X,X)$, 
+        称作 $X$ 的\textbf{自同构}. 
+        在这些集合上赋予 $\circ$ 二元运算, 
+        则 $\mathrm{End}(X)$ 构成一个幺半群, 
+        则 $\mathrm{Aut}(X)$ 构成一个群. 
+
+        \item 态射有一个更直观的意义, 我们将 
+        $f \in \mathrm{Hom}_{\mathcal{C}}(X,Y)$ 写作 
+        \begin{tikzcd}
+            X \arrow[r,"f"] &Y
+        \end{tikzcd}
+        因此, 态射的另一名讳为\textbf{箭头}. 
+        听起来或许有些开玩笑, 但是这其实是一则共识. 
+        从而态射的合成无非就是箭头的首尾衔接, 为了展示合成, 
+        我们常常使用如下的\textbf{交换图表 diagram}: 
+        \begin{center}
+            \begin{tikzcd}
+                X \arrow[r, "f"] \arrow[d, "\varphi"] & Y \arrow[d, "\psi"] \\
+                A \arrow[r, "g"]                      & B                     
+            \end{tikzcd}
+        \end{center}
+        其含义为箭头的殊途同归 $\psi f = g \varphi$. 
+        范畴论经常称为抽象废话 abstract nonsense 的原因就在于此, 
+        或许是看起来完全自然的东西, 却做着极度抽象化形式化的推理. 
+        在 Aluffi 的 Algebra: Chapter 0 中, 特意介绍了箭头的范畴. 
+    \end{itemize}
+\end{definition}
+
+"子" 的概念的嵌入也是自然的. 
+
+\begin{definition}
+    称范畴 $\mathcal{C}'$ 是 $\mathcal{C}$ 的\textbf{子范畴}, 
+    当且仅当其符合: 
+    \begin{enumerate}[(i)]
+        \item $\mathrm{Ob}(\mathcal{C}')\subset \mathrm{Ob}(\mathcal{C})$; 
+        \item $\mathrm{Mor}(\mathcal{C}')\subset \mathrm{Mor}(\mathcal{C})$, 
+        并且具有相同的恒等态射; 
+        \item 对任意 $X,Y \in \mathrm{Ob}(\mathcal{C}')$ 有 
+        $\mathrm{Hom}_{\mathcal{C}'}(X,Y) \subset \mathrm{Hom}_{\mathcal{C}}(X,Y)$. 
+    \end{enumerate}
+    如果对任意 $X,Y \in \mathrm{Ob}(\mathcal{C}')$ 有 
+    $\mathrm{Hom}_{\mathcal{C}'}(X,Y) = \mathrm{Hom}_{\mathcal{C}}(X,Y)$. 
+    则称 $\mathcal{C}'$ 是 $\mathcal{C}$ 的\textbf{全子范畴}, 
+    此时 $\mathcal{C}'$ 和 $\mathcal{C}$ 的差别由对象完全体现, 
+    它继承了 $\mathcal{C}$ 上能继承的所有态射. 
+\end{definition}
+
+我们可以举一些例子来体悟这些抽象废话. 
+
+\begin{example}
+    \begin{itemize}
+        \item $\mathsf{Set}$ 为所有集合构成的范畴, 
+        它的对象为所有集合, 对象之间的态射为集合之间的映射, 
+        态射的合成为映射的合成, 恒等态射为恒等映射. 
+
+        \item $\mathsf{Set}_{\bullet}$ 称为带基点的集合范畴. 
+        它的对象为所有 $(X,x)$, 其中 $X$ 为集合而 $x\in X$ 
+        称为基点, 从 $(X,x)$ 到 $(Y,y)$ 的态射是所有满足 $y=f(x)$ 
+        的映射 $f:X \to Y$. 
+
+        \item 任一偏序集 $(P,\leq)$ 构成一个范畴, 
+        其对象为 $P$ 中的所有元素, 对任一 $x,y \in P$, 
+        $\mathrm{Hom}(x,y)$ 中至多只有一个态射, 
+        定义态射 $x \mapsto y$ 当且仅当 $x \leq y$. 
+
+        $\mathbb{N}$ 中的所有箭头 (不包含复合) 如下所示: 
+        \begin{center}
+            \begin{tikzcd}
+                0 \arrow[r] \arrow[loop, distance=2em, in=125, out=55] 
+                & 1 \arrow[r] \arrow[loop, distance=2em, in=125, out=55] 
+                & \cdots \arrow[r] 
+                & n \arrow[r] \arrow[loop, distance=2em, in=125, out=55]
+                & \cdots
+            \end{tikzcd}
+        \end{center}
+        普通的偏序集因为其不具备比较性, 所以常常是许多条链交织成的, 
+        能够被某一条链所连接的节点可以比较. 
+
+        \item $\mathsf{Grp}$ 表示所有群构成的范畴, 对象之间的态射定义为
+        群同态, 态射的合成与恒等态射的定义同 $\mathsf{Set}$. 
+
+        \item $\mathsf{Ab}$ 表示所有 Abel 群构成的范畴, 态射的定义同 
+        $\mathsf{Grp}$ 一样. 它是 $\mathsf{Grp}$ 的全子范畴. 
+        循 Abel 群中交换的加法, Abel 群的同态也可以相加, 
+        于是对于任意两个 Abel 群 $X,Y$, 同态集 $\mathrm{Hom}(X,Y)$ 
+        中可以定义 $+$, 即 $f,g \in \mathrm{Hom}(X,Y)$, 
+        可以定义 $f+g:x \mapsto f(x)+g(x)$ 可以验证它是一个群同态, 
+        因此 $\mathrm{Hom}(X,Y)$ 本身也是 $\mathsf{Ab}$ 的一个对象. 
+
+        加之原本的合成映射的性质, 发现合成映射 
+        $\mathrm{Hom}(Y,Z) \times \mathrm{Hom}(X,Y)\to \mathrm{Hom}(X,Z)$ 
+        满足双线性: 
+        $$ (f+g)\circ h = f \circ h + g \circ h \,\,
+        h\circ (f+g) = h \circ f + h \circ g.$$ 
+
+        \item $\mathsf{Top}$ 表示所有拓扑空间构成的范畴, 
+        空间假定均为 Hausdorff 的, 态射定义为连续映射, 合成与恒等态射
+        承袭 $\mathsf{Set}$. 
+
+        \item 给定一个域 $F$, $\mathsf{Vect}(F)$ 表示 $F$ 上的所有
+        线性空间构成的范畴, 态射为线性映射. 
+        可类似定义有限维向量空间范畴 $\mathsf{Vect}_f(F)$, 
+        它是 $\mathsf{Vect}(F)$ 的全子范畴. 
+
+        \item 给定一个集合 $S$, 离散范畴 $\mathsf{Disc}(S)$ 
+        的对象为 $S$ 中的元素, 态射仅有恒等态射 $\{id_x:\,x\in S\}$.
+    \end{itemize}
+\end{example}
+
+我们自然可以定义在态射上定义单和满, 不过此时的定义稍显不一样. 
+
+\begin{definition}
+    设 $X,Y \in \mathrm{Ob}(\mathcal{C})$, $f \in \mathrm{Hom}(X,Y)$. 
+    \begin{itemize}
+        \item 若 $f$ 具有如下的\textbf{左消去律}: 
+        对任意 $Z\in \mathrm{Ob}(\mathcal{C})$ 和任一对态射 
+        $g,h \in \mathrm{Hom}(Z,X)$ 有 
+        $fg =fh \Longleftrightarrow g=h$, 
+        则我们称 $f$ 为\textbf{单态射}. 
+
+        \item 若 $f$ 具有如下的\textbf{右消去律}: 
+        对任意 $Z\in \mathrm{Ob}(\mathcal{C})$ 和任一对态射 
+        $g,h \in \mathrm{Hom}(Y,Z)$ 有 
+        $gf =hf \Longleftrightarrow g=h$, 
+        则我们称 $f$ 为\textbf{满态射}. 
+        
+        \item 若存在 $g$ 使得 $gf = id_X$, 则称 $f$ \textbf{左可逆}, 
+        $g$ 成为 $f$ 的一个左逆; 
+        若存在 $g$ 使得 $fg = id_Y$, 则称 $f$ \textbf{右可逆}, 
+        $g$ 成为 $f$ 的一个右逆; 
+        若一个态射既左可逆又右可逆, 则称态射\textbf{可逆}. 
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    若一个态射左可逆, 则它是单态射; 若一个态射右可逆, 则它是满态射. 
+\end{proposition}
+
+\begin{proof}
+    设 $f$ 具有左逆 $f^{-1}_l$, 设 $fg =fh$, 则 
+    $f^{-1}_lfg = f^{-1}_lfh \Longleftrightarrow g=h$. 
+    右可逆同理. 
+\end{proof}
+
+\begin{proposition}
+    在 $\mathsf{Set}$ 中, 左可逆与单态射等价, 右可逆和满态射等价. 
+    从而单态射等同集合的单射, 满态射等同集合的满射. 
+    对于 $\mathsf{Grp}$, $\mathsf{Ab}$ 和 $\mathsf{Vect}(F)$ 
+    亦是如此. 
+\end{proposition}
+
+\begin{proof}
+    直观的想法是想用左消去律来推出左可逆, 事实上这种构造是有些困难的, 
+    我们还是返回至映射的单射定义来看. 
+
+    设 $f: X\to Y$ 具有左消去律, 我们证它是单射, 采用反证法. 
+    假设 $f$ 不单, 则存在 $x',x'' \in X$ 满足 $x' \neq x''$ 但是 
+    $f(x')=f(x'')$, 则我们可以取同构映射 
+    $$\varphi(x) = 
+    \begin{cases}
+        x, &x \neq x',x'' \\
+        x', &x = x'' \\
+        x'', &x = x'
+    \end{cases}$$
+    $\varphi$ 不过是交换了一下 $x'$ 和 $x''$ 罢了, 
+    因此由假设 $f(\varphi(x'))=f(x'')=f(x')=f(\varphi(x''))$
+    左边两个等号和右边两个等号得出了 $f\circ\varphi= f = f\circ id_X$, 
+    于是由左消去律, 得出 $\varphi = id_X$, 显然矛盾. 
+
+    同理, 设 $f: X\to Y$ 具有右消去律, 我们证它是满射, 采用反证法. 
+    假设 $f$ 不满, 则存在 $y' \in Y$ 使得 
+    $y' \neq f(x), \,\forall\,x \in X$, 
+    再任取一点 $y'' \in f(X)$ 我们可以取映射 
+    $$\psi(y) = 
+    \begin{cases}
+        y, &y \neq y' \\
+        y'', &y = y' 
+    \end{cases}$$
+    此时因为 $\psi|_{f(X)}=id_{f(X)}$, 有 
+    $\psi \circ f = id_Y \circ f$ 由右消去律, $\psi = id_Y$, 矛盾. 
+\end{proof}
+
+但是对于其他范畴, 这点性质并不能保证. 
+
+\begin{example}
+    在 $\mathsf{Top}$ 中, \textbf{满态射并不要求是满射}. 
+    $\mathsf{Top}$ 中的态射为连续映射, 设 $f: X \to Y$ 
+    是两个拓扑空间 $(X,\mathcal{T}_1)$ 和 $(Y,\mathcal{T}_2)$ 
+    之间的连续映射. 
+    我们称 $f$ 的像在 $Y$ 中稠密, 是指 $Y \subset \overline{f(X)}$. 
+    我们下面证明, 只要 $f$ 的像在 $Y$ 中稠密, 则 $f$ 满足右消去律, 
+    从而 $f$ 是 $\mathsf{Top}$ 中的一个满态射. 
+
+    依旧是反证法, 假设存在另一拓扑空间 $(Z,\mathcal{T}_3)$, 
+    存在 $g,h : Y \to Z$ 为连续映射, 并且 $g|_{f(X)}=h|_{f(X)}$, 
+    但是存在 $y_0 \in Y$ 使得 $g(y_0)\neq h(y_0)$. 
+    由于假设 $\mathsf{Top}$ 里的对象都是 Hausdorff 空间, 
+    所以必然存在 $U,V \in \mathcal{T}_3$ 分别为 $g(y_0)$ 和 $h(y_0)$ 
+    的开邻域, 并且 $U \cap V = \varnothing$. 
+    由于 $g,h$ 均为连续映射, 因此 $g^{-1}(U),h^{-1}(V) \in \mathcal{T}_2$, 
+    从而 $g^{-1}(U) \cap h^{-1}(V) \in \mathcal{T}_2$ 
+    并且它是 $y_0$ 的一个开邻域. 
+
+    因为 $Y \subset \overline{f(X)}$, 对 $y_0$ 的任意开邻域 $W$, 
+    均有 $W \cap f(X) \neq \varnothing $, 取 
+    $W = g^{-1}(U) \cap h^{-1}(V)$, 存在 
+    $y_1 \in W \cap f(X) =g^{-1}(U) \cap h^{-1}(V) \cap f(X)$, 
+    因而 $g(y_1) = h(y_1)$, 而 $g(y_1)\in U$, $h(y_1) \in V$, 
+    与 $U \cap V$ 矛盾. 
+
+    我们给出一个例子, 来说明 $\mathsf{Top}$ 中确有态射是满态射而非
+    满 (映) 射. 
+    
+    记 $X = (\mathbb{R},\mathcal{T}_{\mathbb{R}})$, 其中拓扑结构为标准的拓扑
+     (按度量定义), 同样地定义 
+    $Y= (\mathbb{Q},\mathcal{T}_{\mathbb{Q}})$. 
+    则包含映射 $\iota : X \to Y$ 必然是连续映射, 
+    并且因为 $\overline{\mathbb{Q}}=\mathbb{R}$, 
+    而 $\iota(\mathbb{Q})=\mathbb{Q} \subsetneq \mathbb{R}$ 
+    是满态射而非满射. 
+\end{example}
+
+上述例子也说明了, 范畴让我们的注意力转移到更加本质的内容上, 
+对于连续映射因为拓扑空间的良好性质, 只要它的像稠密, 我们相当于可以
+足够覆盖住值映射上的空间, 用这些开集将其盖满. 
+此时我们对态射的要求就超乎映射的要求, 而直接与我们的对象关联着, 
+因此范畴存在的意义就是在于不指定对象却能够推导出良多共通的性质. 
+
+我们先前介绍过一些不变量的研究, 不变量无非就是映射, 
+而我们更加重视同构, 就像我们对各种矩阵标准型的刻画, 
+这些同构能够直接反应等价类. 有了更加统一的语言, 我们对数学对象的分类问题
+也有了更加统一的标准. 下面介绍的广群就是做此用处的. 
+
+\begin{definition}
+    \textbf{[广群 groupoid]} 若一个范畴 $\mathcal{C}$ 中的所有态射
+    皆可逆, 则称之为\textbf{广群}. 
+\end{definition}
+
+\begin{remark}
+    回忆起幺半群的英文为 monoid, 其中 mo- 作为前缀表示出 "单" 的意思 
+    (Monotone 表示单调), 
+    这里寓意单位元, 而 -oid 作为后缀表示类似于什么的东西. 
+    monoid 的出现几乎和群只相差一点了, 我们也可以用 $U(M)$ 
+    生成一个群来, 因此我们对 -oid 的另一种翻译, 是为胚. 
+    广群的另一个翻译即为群胚, 下面我们展示广群是何以生成群结构的. 
+
+    假设存在一个只有一个对象 $X$ 的范畴 $\mathcal{C}$, 
+    则其态射集为 $\mathrm{Mor}(\mathcal{C}) = \mathrm{End}(X)$ 
+    即所有映成自己的态射. 
+    因此, 每个只有一个对象 $X$ 的范畴 $\mathcal{C}$ 都与一个幺半群 
+    $\mathrm{End}(X)$ 1-1 对应. 
+    于此意义下, 一个群无非就是一个只有一个对象的广群 
+    (此时 $\mathrm{Mor}(\mathcal{C}) = \mathrm{Aut}(X)$). 
+\end{remark}
+
+范畴和范畴之间当然是有关联的, 这牵扯到我们之前所说的 "信息" 的概念. 
+无论是怎样的代数结构, 本质上都是集合, 而我们也可以定义出类似于一级结构
+二级结构这样的名词, 比如说像多项式和矩阵这种还额外定义了乘法的我们认为它们
+是 $R$-代数, 它是一个环, 也是一个环 (域) 上的模 (线性空间), 
+因此它也是一个 Abel 群. 我们在构建这种谱系的时候, 
+无非就是在依次地忘却掉 "数乘", "乘法", "加法" 的信息. 
+
+为了体现出范畴和范畴之间的联系, 建立起范畴之间的箭头是必要的. 
+
+\begin{definition}
+    \textbf{[函子 functor]} 设 $\mathcal{C},\mathcal{C}'$ 为范畴. 
+    一个函子 $F:\mathcal{C}' \to \mathcal{C}$ 是同时作用在
+    对象和态射上的映射: 
+    \begin{enumerate}[(i)]
+        \item 对象间: 
+        $F: \mathrm{Ob}(\mathcal{C}')\to \mathrm{Ob}(\mathcal{C})$. 
+        \item 态射间: 
+        $F: \mathrm{Mor}(\mathcal{C}')\to \mathrm{Mor}(\mathcal{C})$, 
+        并且满足: 
+        \begin{itemize}
+            \item 对任意 $X,Y \in \mathcal{C}'$ 有 
+            $ F: \mathrm{Hom}_{\mathcal{C}'}(X,Y) \to \mathrm{Hom}_{\mathcal{C}}(FX,FY)$. 
+            \item $F(g\circ f) = F(g) \circ F(f)$, $F(id_X) = id_{FX}$.
+        \end{itemize}
+    \end{enumerate}
+    两个函子之间可以循映射定义合成函子, 即对 
+    $F:\mathcal{C}_1 \to \mathcal{C}_2$ 和 $G:\mathcal{C}_2 \to \mathcal{C}_3$ 
+    合成函子 $G \circ F :\mathcal{C}_1 \to \mathcal{C}_3$ 循从 
+    \begin{center}
+        \begin{tikzcd}
+            \mathrm{Ob}(\mathcal{C}_1) \arrow[r,"F"] &\mathrm{Ob}(\mathcal{C}_2)
+            \arrow[r,"G"] &\mathrm{Ob}(\mathcal{C}_3)
+        \end{tikzcd}
+
+        \begin{tikzcd}
+            \mathrm{Mor}(\mathcal{C}_1) \arrow[r,"F"] &\mathrm{Mor}(\mathcal{C}_2)
+            \arrow[r,"G"] &\mathrm{Mor}(\mathcal{C}_3)
+        \end{tikzcd}
+    \end{center}
+
+    对于函子 $F:\mathcal{C}' \to \mathcal{C}$, 
+    \begin{enumerate}[(1)]
+        \item 称 $F$ 是 \textbf{本质满的}, 若 $\mathcal{C}$ 中任一对象
+        都同构于某一个 $FX$. 
+        \item 称 $F$ 是 \textbf{忠实的}, 若对所有 $X,Y \in \mathrm{Ob}(\mathcal{C}')$ 
+        映射 $$ \mathrm{Hom}_{\mathcal{C}'}(X,Y) \to \mathrm{Hom}_{\mathcal{C}}(FX,FY)$$ 
+        都是单射 (映射意义下). 
+        \item 称 $F$ 是 \textbf{全的}, 若对所有 $X,Y \in \mathrm{Ob}(\mathcal{C}')$ 
+        映射 $$ \mathrm{Hom}_{\mathcal{C}'}(X,Y) \to \mathrm{Hom}_{\mathcal{C}}(FX,FY)$$ 
+        都是满射 (映射意义下). 
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    \begin{itemize}
+        \item \textbf{包含函子}是当
+        子范畴 $\mathcal{C}' \subset \mathcal{C}$ 给出的
+        $ \iota : \mathcal{C}' \to \mathcal{C}$. 
+        包含函子总是忠实的, 因为包含函子相当于对象集和态射集同时做包含映射, 
+        而包含映射总是单的; 包含函子是全的当且仅当 $\mathcal{C}'$ 是全子范畴, 
+        因为此时
+        $ \mathrm{Hom}_{\mathcal{C}'}(X,Y) = \mathrm{Hom}_{\mathcal{C}}(FX,FY)$. 
+
+        取 $\mathcal{C}' = \mathcal{C}$ 即可得到恒等函子 
+        $id_{\mathcal{C}}: \mathcal{C} \to \mathcal{C}$. 
+
+        \item \textbf{忘却函子}是一个更为广泛的概念, 它是对我们之前讨论
+        掉的遗忘掉某些信息的严格表述. 我们以群范畴 $\mathsf{Grp}$ 为例, 
+        因为群本身是集合, 而群态射本身是集合映射, 于是我们可以给出
+        忘却函子 $\mathsf{Grp} \to \mathsf{Set}$. 
+        本质就是忘却了群的结构. 
+        我们可以对线性空间做如下的忘却链: 
+        $$  \mathsf{Vect}(F) \to \mathsf{Ab} \to \mathsf{Grp} 
+        \to \mathsf{Set}$$
+        忘却函子是数不尽的, 它体现了范畴的哲学思想. 
+    \end{itemize}
+\end{example}
+
+更多的函子的例子交由更高的观点去处理, 待到那时我们还将定义函子间的箭头, 
+它唯一需要注意的就是图可交换. 
+
+
+\end{document}

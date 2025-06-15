@@ -1,0 +1,1425 @@
+\documentclass[UTF8]{book}
+
+\usepackage[T1]{fontenc}
+\usepackage{bookmark}
+\usepackage{ctex} %这是中文latex必需品
+\usepackage{lipsum}
+\usepackage{amsmath, amsthm, amssymb, amsfonts,mathrsfs} %latex写数学的必需品
+\usepackage{thmtools} %定理环境的工具
+\usepackage{graphicx} %图片设置的工具
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float} %设置图片位置
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz-cd} %用tikz画图的工具
+\usepackage[most]{tcolorbox}
+\usepackage{enumerate} %序号
+\usepackage[center]{titlesec}
+\usepackage{arydshln} % 矩阵画虚线
+
+\usetikzlibrary{positioning}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+\tcbuselibrary{theorems}
+\tcbuselibrary{breakable}
+
+
+%定义颜色，可以根据需求自己修改
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{Lightblue}{Blue!15}
+\colorlet{Lightpurple}{Purple!15}
+\colorlet{LightRed}{Red!15}
+\colorlet{LightYellow}{Yellow!15}
+\colorlet{LightCyan}{Cyan!15}
+\colorlet{LightAquamarine}{Aquamarine!15}
+\colorlet{LightCadetBlue}{CadetBlue!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\newtheorem{corollary}{Corollary}[section]
+\newenvironment{solution}{{\noindent\it Solution.} }{\hfill $\square$\par}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={定理}]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Definition,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={定义}]{definition}
+\tcolorboxenvironment{definition}{colback=LightCyan,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Remark,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={注记}]{remark}
+\tcolorboxenvironment{remark}{colback=LightRed,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Lemma,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={引理}]{lemma}
+\tcolorboxenvironment{lemma}{colback=Lightblue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Corollary,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section,refname={推论}]{Corollary}
+\tcolorboxenvironment{corollary}{colback=Lightpurple,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section,refname={命题}]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Example,]{prosty}
+\declaretheorem[style=prosty,numberwithin=section,refname={例}]{example}
+\tcolorboxenvironment{example}{colback=LightGreen,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Exercise,]{prosty}
+\declaretheorem[style=prosty,numberwithin=chapter]{exercise}
+\tcolorboxenvironment{exercise}{colback=LightAquamarine,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\declaretheoremstyle[name=Hint \& Answer,]{prosty}
+\declaretheorem[style=prosty,numberwithin=chapter]{answer}
+\tcolorboxenvironment{answer}{colback=LightCadetBlue,breakable,before upper app={\setlength{\parindent}{2em}}}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother %罗马数字的简洁打法
+
+% 修改 Chapter 为 Lecture
+
+\titleformat{\chapter}{\raggedright\Huge\bfseries}{Lecture \thechapter}{1em}{}
+\titleformat{\section}{\raggedright\Large\bfseries}{\,\thesection\,}{1em}{}
+\titleformat{\subsection}{\raggedright\large\bfseries}{\,\thesubsection\,}{1em}{}
+
+
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+% 设置 PDF 文件信息
+%\hypersetup{
+%	pdfauthor = {章梓杭},
+%	pdftitle = {巴猪数学讲义 第一卷:数学分析},
+%	pdfkeywords = {Analysis},
+%	CJKbookmarks = true}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% 封面设计如下：
+% ------------------------------------------------------------------------------
+
+%\setCJKfamilyfont{coverfont}{SIMKAI.TTF}	% 设置书名字体
+%\setCJKfamilyfont{cover-author-font}{SIMSUN.TTF}	% 设置作者字体
+
+% 设置标题样式
+
+\begin{titlepage}
+    \vspace*{10em}
+\begin{center}
+    \zihao{0} % 一号字大小，可根据需要调整
+    \textbf{\songti 高等代数选讲} \\ % 加粗宋体显示“高等代数”
+    \vspace{4em} % 增加一些垂直间距
+    \zihao{4} % 四号字大小，可根据需要调整
+    作者: ZZH \\ % 第二行写作者
+    \vspace{10em} % 增加垂直间距
+
+    % 页面下方写免责声明
+    \zihao{5} % 五号字大小，可根据需要调整
+    本讲义使用于 HEO 高等代数\Rmnum{2} 课程中, \\
+    内容由 \LaTeX 编译, 图片使用 GeoGebra 绘制. \\
+    参考多部书目, 仅用作学习讨论和笔记需求. 如有错误, 欢迎指正. \\
+    使用时间 2025/4/7\\
+
+    最后编译时间 \today\\
+\end{center}
+
+\end{titlepage} 
+
+\newpage
+
+\vspace*{5em}
+
+每逢拾笔, 愿母亲安康. 
+
+本笔记摘选自 巴猪数学讲义: 第二卷 高等代数. 
+
+谨以彼书赠与女友与巴猪的陪伴. 
+
+祝诸位在数学上逢见挚爱. 
+
+\vspace*{5em}
+
+摘自 Grassmann 扩张论. 您的理论如今已是大学入学必学的课程. 
+
+\begin{quotation}
+    \kaishu
+    我始终坚信我在此科学上所付出的劳动不会白费, 它耗尽了我生命中最重要的阶段, 
+    让我付出了超常的努力. 我当然知道我给出的这门科学的形式还不完善, 
+    它一定是不完善的. 但是, 我知道而且有义务在此声明 (可能有人会认为我很狂妄), 
+    即使这一成果再过十七年或更长时间还不被使用, 也没有真正融入到科学的发展之中, 
+    它冲出遗忘的尘埃现身的时候也一定会到来, 现在沉睡着的思想结出硕果的那一天一定会到来. 
+    我知道, 如果我今天还不能 (如我至今徒劳地期望那样) 把学者们吸引到我的周围, 
+    用这些思想帮助他们成果累累, 促使其进步, 丰富其学识, 
+    那么这种思想在将来一定会重生, 或许以另一种新形式, 与时代发展水乳交融. 
+    因为真理是永恒不灭的. 
+    \songti
+\end{quotation}
+
+\vspace*{5em}
+
+摘自 Grothendieck 丰收与播种. 愿数学的远端没有硝烟. 
+
+\begin{quotation}
+    
+    \kaishu   
+    我可以用同样的坚果意象来说明第二种方法: 
+    
+    第一种类比: 
+    我首先想到的是将坚果浸泡在某种软化液体中——为何不直接用水呢? 
+    你偶尔摩擦坚果以促进液体渗透,其余时间则静待其变. 
+    经过数周甚至数月, 外壳逐渐变得柔软——当时机成熟, 仅需用手轻轻一压, 
+    它便会如完美成熟的牛油果般自然裂开! 
+
+    几周前, 我的脑海中闪现了另一幅图像. 
+      
+    那片等待被理解的未知, 仿佛一片坚硬的土地或泥灰岩, 抗拒着侵入\dots
+    而海水无声无息地悄然上涨, 看似毫无动静, 潮水遥远得几乎听不见声响\dots 
+    但它终将温柔包裹住那顽固的物体. 
+    
+\end{quotation}
+
+代数就是这片 Rising Sea. 
+
+\setcounter{chapter}{5}
+\chapter{线性空间的基与维数}
+\section{张成子空间}
+参考我们之前对群的探讨, 如下的性质不过是推论. 
+
+\begin{proposition}
+    域 $F$ 上的线性空间 $V$ 具有如下性质: 
+    \begin{enumerate}[(1)]
+        \item 零元 $\boldsymbol{0} \in V$ 唯一. 
+        \item 任意向量 $\boldsymbol{v}\in V$ 的负元 $-\boldsymbol{v}$ 
+        唯一. 
+        \item 加法具备消去律: 任意 $\boldsymbol{v},\boldsymbol{w},
+        \boldsymbol{u} \in V$, 有 
+        $$\boldsymbol{v} +\boldsymbol{u} = \boldsymbol{w}+\boldsymbol{u} 
+        \Longrightarrow \boldsymbol{v} = \boldsymbol{w}.$$
+    \end{enumerate}
+\end{proposition}
+
+结合了数乘之后则有如下性质, 这些体现了数乘和加法的连接: 
+\begin{proposition}
+    域 $F$ 上的线性空间 $V$ 具有如下性质: 
+    \begin{enumerate}[(1)]
+        \item 对任意向量 $\boldsymbol{v}\in V$ 有 
+        $0\boldsymbol{v} = \boldsymbol{0}$.
+        \item 对任意标量 $k \in F$ 有 
+        $ k\boldsymbol{0} = \boldsymbol{0} $
+        \item 对任意向量 $\boldsymbol{v}\in V$ 和任意标量 $k\in F$ 有
+        $ (-k)\boldsymbol{v} =-(k\boldsymbol{v}) = k(\boldsymbol{-v}) $.
+        \item 若有 $k\boldsymbol{v} = \boldsymbol{0}$, 
+        则要么 $k=0$, 要么 $\boldsymbol{v} = \boldsymbol{0}$. 
+        \item 任取一列向量 
+        $\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n$, 
+        任取一列标量 
+        $k_1,k_2,\cdots,k_m \in F$ 
+        则有 
+        $$ \left(\sum_{i=1}^{m} k_i\right)
+        \left(\sum_{j=1}^{n}\boldsymbol{v}_j\right)
+        = \sum_{i=1}^{m}\sum_{j=1}^{n} k_i \boldsymbol{v}_j. $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[(1)]
+        \item $ 0\boldsymbol{v} = (0+0)\boldsymbol{v} = 
+        0\boldsymbol{v} + 0\boldsymbol{v} \Rightarrow 
+        0\boldsymbol{v} = \boldsymbol{0} $. 
+        \item $ k\boldsymbol{0} = k(\boldsymbol{0}+\boldsymbol{0}) = 
+        k\boldsymbol{0} + k\boldsymbol{0} \Rightarrow 
+        k\boldsymbol{0} = \boldsymbol{0} $.
+        \item 由于 $ k\boldsymbol{v} + (-k)\boldsymbol{v} = 
+        (k-k)\boldsymbol{v} = 0\boldsymbol{v} = \boldsymbol{0}$ 
+        因此 $k\boldsymbol{v}$ 的加法逆元即负元 
+        $-(k\boldsymbol{v}) = (-k)\boldsymbol{v}$. 
+
+        同理有 $ k\boldsymbol{v} + k(-\boldsymbol{v}) = 
+        k(\boldsymbol{v}-\boldsymbol{v}) = k\boldsymbol{0} 
+        = \boldsymbol{0}$ 
+        因此 $k\boldsymbol{v}$ 的加法逆元即负元 
+        $-(k\boldsymbol{v}) = k\boldsymbol{-v}$. 
+        
+        \item 假设 $k\neq 0$, $\boldsymbol{v} = \boldsymbol{0}$, 
+        则 
+        $\boldsymbol{v} = (k^{-1}k)\boldsymbol{v} = k^{-1}
+        (k\boldsymbol{v}) = k^{-1}\boldsymbol{0} = \boldsymbol{0}$, 
+        矛盾. 
+        
+        \item 由两种分配律立刻得到. 
+    \end{enumerate}
+\end{proof}
+
+关于判断一个子集是否是线性空间的子空间时, 有如下的等价判别定理: 
+
+\begin{theorem}
+    设 $V$ 是域 $F$ 上的线性空间, 则它的子集 $W$ 为其子空间
+    当且仅当对任意 $k,l\in F$, $\boldsymbol{v},\boldsymbol{w} \in W$ 
+    有 $k\boldsymbol{v}+l\boldsymbol{w} \in W$. 
+\end{theorem}
+
+\begin{proof}
+    必要性显然, 证充分性: 
+    只要证明 $W$ 对 $V$ 上的加法和数乘构成代数运算 (封闭性) 即可, 因为
+    此时 $V$ 上的所有运算性质自然地附着在 $W$ 上. 
+    因此只需对加法取 $k=l=1$ , 对数乘取 $l=0$ 即可得到定义形式. 
+\end{proof}
+
+注意到上述定理自然有如下的推广: 
+
+\begin{corollary}
+    设 $V$ 是域 $F$ 上的线性空间, 则它的子集 $W$ 为其子空间
+    当且仅当对任意 $k_i\in F$, $\boldsymbol{v_i}\in W$, $i=1,2,\cdots,n$ 
+    有 $\sum_{i=1}^{n}k_i\boldsymbol{v_i} \in W$. 
+    
+    更一般地, 对任意 $\boldsymbol{v}_s \in W$, 
+    以及有限个非零的 $k_s \in F$, 其中 $s\in S$ 为指标集, 
+    则有 $\sum_{s\in S}k_s\boldsymbol{v_s} \in W$.
+\end{corollary}
+
+于是我们引出如下定义: 
+
+\begin{definition}
+    \textbf{[线性组合]} 
+    设 $V$ 是域 $F$ 上的线性空间. 
+    \begin{itemize}
+        \item 取一组向量组 
+        $S=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_m)$ 
+        对任意的一组标量 $k_1,k_2\cdots,k_m \in F$, 
+        有 
+        $$\boldsymbol{v} = k_1\boldsymbol{v}_1 + \cdots k_m\boldsymbol{v}_m 
+        \in V$$
+        称其为 $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_m)$ 
+        的一个\textbf{线性组合}, 
+        称 $\boldsymbol{v}$ 被 
+        $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_m)$ 
+        \textbf{线性表出}. 
+        并称标量组 $(k_1,k_2,\cdots,k_m)$ 为 $\boldsymbol{v}$ 
+        在向量组 $S$ 下的一个\textbf{表示}. 
+        (注意这里的有限向量组是有序的数组, 而标量组是与其序配对的组)
+
+        \item 更一般地, 取一个向量组 $S = \{\boldsymbol{v}_{s}\}_{s\in \Gamma} \subset V$ 
+        (此时它可以是无穷多个向量), 任取一组标量 $\{k_{s}\}\subset F$, 
+        当 $\{k_{s}\}_{s\in \Gamma}$ 中仅有\textbf{有限个非零项}时, 称
+        $$ \sum_{s}k_s \boldsymbol{v}_s $$ 
+        为 $S = \{\boldsymbol{v}_{s}\}_{s\in \Gamma}$ 的一个\textbf{线性组合}. 
+        因此, 线性组合中仅有有限个向量做加法运算 (我们从未定义无限的加法). 
+        
+        我们称标量组 $\{k_{s}\}_{s\in \Gamma}$ 为 $\boldsymbol{v}$ 
+        在向量组 $S$ 下的一个\textbf{表示}, 
+        配对关系默认循 $\Gamma \to F\times S$ 的单射. 
+        由于这层默认, 通过限制坐标实际 $\Gamma$ 和 $S$ 是同构的, 
+        因此我们无须关注下标集 $\Gamma$. 
+
+        \item 设 $S_1$ 和 $S_2$ 是线性空间 $V$ 上的两个向量组, 
+        若 $S_2$ 中的每个向量都可由 $S_1$ 线性表出, 则称 $S_2$ 可由 $S_1$ 
+        线性表出. 若此时 $S_1$ 也可以由 $S_2$ 线性表出, 
+        则称 $S_1$ 和 $S_2$ \textbf{(线性) 等价}. 这是一个等价关系. 
+    \end{itemize}
+    
+\end{definition}
+
+我们终于可以用大白话来讲线性空间究竟是什么. 
+所谓线性空间, 就是一切其中一切向量的线性组合所构成的空间. 
+因此, 我们只需要给定一组向量, 就可以构造出线性空间. 
+
+\begin{lemma}
+    给定一个 $Abel$ 群 $G$ 和一个域 $F$, 
+    可构造一个域 $F$ 上的线性空间 $V$, 
+    并且 (在同构意义下), $G$ 是 $V$ 上的加法群 $V^+$ 的一个子群.  
+\end{lemma}
+
+引理涉及到比较高深的代数理论 (主要是张量积), 在此按下不表. 
+我们可以这样去理解, 假设我们有一个比 $G$ 要大的多的 Abel 群 $U$ 
+将 $G$ 作为其子群, 并使得我们在 $G$ 上定义的数乘也在 $U$ 内封闭, 
+即 $k\boldsymbol{v} \in U$, $\forall k \in F$, 
+$\forall \boldsymbol{v} \in G$. 我们视 $G$ 为一个向量组, 
+则其上的线性组合全体
+$$ \mathrm{span}(G) = \left\{\sum_{s\in S}k_s\boldsymbol{v}_s: \,
+\mbox{仅有有限个非零的}k_a\in F,\boldsymbol{v}_a\in G\right\}$$
+一定是 $U$ 的子集, 因为单个向量数乘后属于 $U$, 从而有限和由 $U$ 
+的 Abel 群的性质而封闭. 
+最后, 我们取 $V = \mathrm{span}(G)$, 不难验证其构成一个线性空间. 
+
+
+\begin{definition}
+    给定域 $F$ 上的一个线性空间 $V$ 与它的一个子集 
+    $S=\{\boldsymbol{v}_s\}$. 
+    我们称 $S$ 上的一切线性组合构成的集合 
+    $$ \mathrm{span}(S) = \left\{\sum_{s}k_s\boldsymbol{v}_s: \,
+\mbox{仅有有限个非零的}k_s\in F,\boldsymbol{v}_s\in G\right\}$$
+    为\textbf{ $S$ 张成 (生成) 的子空间}. 
+
+    一般地, 如果 $S=(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_m)$ 
+    有限,
+    $$ \mathrm{span}(\boldsymbol{v}_1,\cdots,\boldsymbol{v}_m) :=
+    \mathrm{span}(S) = \{k_1\boldsymbol{v}_1+\cdots+
+    k_m\boldsymbol{v}_m:
+     \, k_1,\cdots,k_m \in F \}$$
+\end{definition}
+
+\begin{remark}
+这种从集合构造代数结构的思想在数学中非常常见, 构造代数对象的第一步是为
+集合添置运算, 第二步就是将集合循运算封装成代数结构 (Bourbaki 称其为岩浆), 
+即让运算封闭化, 第三步再完善定义在运算上的公理规律. 
+当然通常还是希望对象已经赋予了代数结构的意义, 否则构造代数运算
+是件麻烦事. 
+
+我们先前介绍的单位群 $U(M)$ 是一个例子, 将一般的域扩张称为代数闭域的
+代数扩张 $E/F$ 也是一个例子. 
+此外, 在分析中, 这样的思想更是常见. 比如我们先前介绍的实数系构造, 
+就是循有理数系构建一个与其序结构 (包括不等式运算性质) 相容的域扩张, 
+要求这一域具备完备性, 对完备化的追求是泛函分析的基础. 
+再者如测度的完备化, $\sigma$-代数的生成, 则是测度论的重要基础. 
+
+\end{remark}
+
+顾名思义, 有以下的命题. 
+
+\begin{proposition}
+    张成的子空间是一个子空间. 
+\end{proposition}
+\begin{proof}
+    循定义中的符号, 我们证明最一般的情形. 
+
+    取两组数 $\{k_s\},\{l_s\}\subset F$, 都只有有限个非零的标量. 
+    令 $\boldsymbol{v} = \sum_{s}k_s \boldsymbol{v}_s$ 和 
+    $\boldsymbol{w} = \sum_{s}l_s \boldsymbol{v}_s$, 
+    注意这里是循下标 $s$ 对应数乘的, 按照定义我们无须强调哪些分量为 0, 
+    $\boldsymbol{v}_s$ 取遍 $S$ 中的所有向量. 
+
+    再取 $a,b \in F$, 则 
+    $$ \begin{aligned}
+    k\boldsymbol{v}+l\boldsymbol{w}
+    &= k \sum_{s}k_s \boldsymbol{v}_s + l \sum_{s}l_s \boldsymbol{v}_s \\
+    &= \sum_{s}(kk_s) \boldsymbol{v}_s + \sum_{s}(ll_s) \boldsymbol{v}_s \\
+    &= \sum_{s} (kk_s+ll_s)\boldsymbol{v}_s
+    \end{aligned}$$
+    有限个非零项的组加上有限个非零项的组一定还是有限非零项的组: 
+    不妨设有 $n$ 个非零的 $k_s$, 有 $m$ 个非零的 $l_s$, 
+    则 $(kk_s+ll_s)$ 中的非零项只少不多, 不超过 $m+n$ 个. 
+    由等价判定条件, 得到 $\mathrm{span}(S)$ 为 $V$ 的一个子空间.
+\end{proof}
+
+除此之外, 张成的子空间有时也被称为\textbf{线性包}, 
+因为它是包含 $S$ 的最小子空间, 从而也有记法 $<S>$. 
+在后面子空间的部分我们会谈论此事. 
+
+\begin{remark}
+    我们选用了 "张成" 这一译名, 是因为线性空间的直观集合想象: 
+    空间中的两个线性无关的向量可以张成一张平面, 三个线性无关的向量
+    则会张成一整个空间, 平面这个意象用张成就会非常的能够激发这一直觉. 
+
+    除此之外的各类场合, 最常用的是 "生成" (单位群就是由幺半群生成的群) 
+    和 "包" (参考之前代数闭包) 的概念. 
+    主要阐明的是这样的数学思想. 
+
+    首先 "子" 的概念是无处不在的, 例如子集, 子群, 子空间, 子列, 子区间, 
+    所谓的 "子" 无非是在限定某种数学结构 (对应的, 集合, 群, 线性空间, 
+    序列, 区间) 
+    之下, 循数学结构的包含关系 (往往只是集合上的包含关系, 有时也需要
+    一些额外条件, 如子域必须有共同的 1 ) 构成的一个性质与元素的继承关系. 
+
+    其次, 如果我们只是拿出线性空间中的一些向量, 那大概率是成不了线性空间的. 
+    数学结构中的元素被赋予了很多信息, 但是个体的信息单抽出来会破坏整体的性质, 
+    为了补充整体的性质, 我们需要对其进行一些填补, 让它成为原数学结构下的
+    子数学结构, 填补这些空洞补全局部的整体性质的这一操作, 我们称之为 
+    "生成". 
+
+    我们可以举一个别的例子来说明. 我们知道由 Cantor 定理, 
+    闭区间上的连续函数都一致连续. 我们专研究门一个开区间 
+    $(a,b)$ 上的连续函数 $f$ 的某些性质时, 
+    如果需要用到一致连续的结论, 我们自然想到最好的方法就是限制在某一闭区间
+    上讨论. 可是如若从 $(a,b)$ 里寻求某一闭区间, 则势必会遗漏掉靠近
+    边缘的某些信息. 因此我们总是想要去研究更大的闭区间, 可若是大太多
+    以至于 $f$ 都没有定义, 研究其也无意义, 平添麻烦. 
+    于是我们想要的是\textbf{包含 $(a,b)$ 的最小闭区间}, 
+    也就是 $[a,b]$. 如若 $f$ 只定义在 $(a,b)$ 上, 
+    或者只在 $(a,b)$ 上连续, 我们也只需要将其补充定义 $f(a):=f(a+0)$ 
+    和 $f(b)=f(b-0)$ 即可构造出一个闭区间上的连续函数. 
+    我们称 $[a,b]$ 是 $(a,b)$ 的\textbf{闭包}, 
+    意义为包含其的\textbf{最小闭集}. 
+
+    事实上, 我们对 $f$ 做的补充定义, 也是一样的. 
+
+    由某一结构生成的子结构或者它的包, 
+    本质上是满足所需要的性质的包含它的最小结构. 
+\end{remark}
+
+线性组合当然可以张成整个线性空间. 
+
+\begin{corollary}
+    设 $V$ 是域 $F$ 上的一个线性空间, 则
+    存在 $V$ 上的一个向量组 $S$, 使得 $V=\mathrm{span}(S)$.
+\end{corollary}
+
+\begin{proof}
+    取 $S=V$ 即可. 
+\end{proof}
+
+同样地, 子空间也是一个线性空间, 因此子空间也是可以被一个向量组张成的. 
+
+\begin{corollary}
+    设 $V$ 是域 $F$ 上的一个线性空间, $W$ 为 $V$ 的一个子空间. 
+    则存在 $V$ 上的一个向量组 $S$, 使得 $W=\mathrm{span}(S)$.
+\end{corollary}
+
+\begin{proof}
+    取 $S=W$ 即可. 
+\end{proof}
+
+于是乎, 我们的断言: 一切线性空间不过是线性组合的张成, 为真. 
+
+在证明中, 我们都是使用了最大的向量组 (也就是线性空间的所有向量). 
+进一步, 我们当然需要去搞明白, 怎样的向量组能够张成线性空间, 
+以及怎样让向量尽可能地少, 以使得我们能够用最少的向量张成线性空间. 
+参见下例. 
+
+\begin{example}
+    在 $\mathbb{R}^3$ 中, $xOy$ 平面为其一个子空间, 记为 $W$. 
+    $W$ 中的向量形如 
+    $\begin{pmatrix}
+        x_1 \\ x_2 \\ 0
+    \end{pmatrix}$
+    因此, $W$ 中的任一向量都可以写作 
+    $$ \boldsymbol{x} = 
+    x_1
+    \begin{pmatrix}
+       1 \\ 0 \\ 0 
+    \end{pmatrix}
+    + x_2
+    \begin{pmatrix}
+        0 \\ 1 \\ 0
+    \end{pmatrix}
+    = x_1\boldsymbol{e}_1 + x_2 \boldsymbol{e}_2,\,
+    x_1,x_2\in \mathbb{R}^3 
+    $$
+    而 $\boldsymbol{e}_1,\boldsymbol{e}_2 \in W$, 
+    因此, $W = \mathrm{span}(\boldsymbol{e}_1,\boldsymbol{e}_2)$. 
+
+    如果我们取 $\boldsymbol{\alpha}_n = \begin{pmatrix}
+        n \\ -n \\ 0
+    \end{pmatrix}$ 
+    则依然有 
+    $W = \mathrm{span}(\boldsymbol{e}_1,\boldsymbol{e}_2,
+    \boldsymbol{\alpha}_1,\cdots,\boldsymbol{\alpha}_n)$ 
+    这也说明了这一系列的 $\boldsymbol{\alpha}_n$ 都没有起到作用. 
+
+    可若是我们删去 $\boldsymbol{e}_1,\boldsymbol{e}_2$, 
+    则发现 $W\supsetneq U =\mathrm{span}
+    (\boldsymbol{\alpha}_1,\cdots,\boldsymbol{\alpha}_n)$, 
+    因为 $U$ 表示的仅是一条直线. 
+\end{example}
+
+在上例中, 注意到向量组中的某个向量只要能被其他的向量线性表出, 
+则这个向量实际对张成是没有帮助的. 
+即是如下的情形: 
+
+设向量组 $S_m=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_m)$, 
+若 $\boldsymbol{v}_m$ 能被其余的向量线性表出, 即 
+$\boldsymbol{v}_m = k_{m1}\boldsymbol{v}_1+k_{m2}\boldsymbol{v}_2+ 
+\cdots + k_{m,m-1}\boldsymbol{v}_{m-1}$, 
+则任取 $\boldsymbol{x} \in \mathrm{span}(S_m)$, 
+从而存在 $x_1,x_2,\cdots,x_m \in F$ 使得 
+$$\begin{aligned}
+\boldsymbol{x} &= x_1 \boldsymbol{v}_1 + x_2 \boldsymbol{v}_2 + 
+\cdots + x_m\boldsymbol{v}_m \\
+&= x_1 \boldsymbol{v}_1 + x_2 \boldsymbol{v}_2 + 
+\cdots + x_m\left(\sum_{i=1}^{m-1}k_{m,i}\boldsymbol{v}_i\right)\\
+&=\sum_{i=1}^{m-1}( x_i + x_mk_{m,i})\boldsymbol{v}_i
+\end{aligned}$$
+因此 $\boldsymbol{x} \in \mathrm{span}(S_{m-1})$, 
+$S_k$ 代表前 $k$ 个 $S_m$ 中的向量. 
+由任意性得到 $\mathrm{span}(S_m) = \mathrm{span}(S_{m-1})$. 
+
+那么我们自然能想到, 或许能够执行这么一个程序, 
+每次寻找一个能够由其他向量线性表示的向量删去, 得到新的向量组, 
+进而继续寻找. 最终删去到剩下的向量组为互相无法线性表示为止. 
+那么我们就得到了想要的: 能够张成线性空间的最小向量组. 
+
+我们来考察这个向量组互相无法线性表示的特性. 
+
+设向量组 $S=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$ 
+为互相无法线性表示的向量组. 其意为
+\begin{equation}
+    \begin{cases}
+        0 + x_{12}\boldsymbol{v}_2 + \cdots + x_{1r}\boldsymbol{v}_r
+        &= \boldsymbol{v}_1 \\
+        x_{21}\boldsymbol{v}_1 + 0 + \cdots + x_{2r}\boldsymbol{v}_r 
+        &= \boldsymbol{v}_2 \\
+        \vdots  &\\
+        x_{r1}\boldsymbol{v}_1 +x_{r2}\boldsymbol{v}_2 + \cdots 
+        + 0 &= \boldsymbol{v}_r 
+    \end{cases}
+\end{equation}
+上面的 $r$ 个关于 $x_{ij}$ 的方程均无解. 
+我们可以将其转化为 
+\begin{equation}
+    \begin{cases}
+        -\boldsymbol{v}_1 + x_{12}\boldsymbol{v}_2 + \cdots + x_{1r}\boldsymbol{v}_r
+        &= 0  \\
+        x_{21}\boldsymbol{v}_1 -\boldsymbol{v}_2 + \cdots + x_{2r}\boldsymbol{v}_r 
+        &= 0 \\
+        \vdots  &\\
+        x_{r1}\boldsymbol{v}_1 +x_{r2}\boldsymbol{v}_2 + \cdots 
+        -\boldsymbol{v}_r &= 0 
+    \end{cases}
+\end{equation}
+因为其系数的任意性, 实际上它们可以化为一个统一的方程: 
+\begin{equation} \label{eq vector formula}
+    x_1\boldsymbol{v}_1 + x_{2}\boldsymbol{v}_2 + \cdots + 
+    x_{r}\boldsymbol{v}_r= 0
+\end{equation}
+这是一个关于 $x_1,x_2,\cdots x_r \in F$ 的方程, 
+且只有零解. 
+
+\begin{definition}
+    \textbf{[线性无关 linear independent]} 
+    设域 $F$ 上的线性空间 $V$ 中的一个向量组 
+    $S=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$, 
+    若关于系数 $x_1,x_2,\cdots x_r \in F$ 的方程 
+    \eqref{eq vector formula} 只有零解, 
+    则我们称向量组 $S$ \textbf{线性无关}. 
+    
+    反之, 若存在一组不全为零的解 $x_1,x_2,\cdots x_r$, 
+    则称 $S$ \textbf{线性相关 linear dependent}. 
+
+    一般地, 设 $S = (\boldsymbol{v}_s)$, 
+    若从 $\sum_{s\in S} x_s \boldsymbol{v}_s =  \boldsymbol{0}$ 
+    一定能够得到 $x_s = 0, \forall\,s\in S$, 
+    则我们称 $S$ \textbf{线性无关}. 反之则\textbf{线性相关}. 
+\end{definition}
+
+\begin{proposition} \label{prop linear dependent}
+    设域 $F$ 上的线性空间 $V$ 中的一个向量组 $S$, 
+    $S$ 中的某一向量可以由其他向量线性表出当且仅当 $S$ 线性相关. 
+\end{proposition}
+
+\begin{proof}
+    沿用定义中的记号, 我们直接对最一般的情形证明. 
+
+    先证必要性. 若存在  
+    $\boldsymbol{v}_{s_0} = \sum_{s} k_{s} \boldsymbol{v}_s$, 
+    其中 $k_{s_0} = 0$, 
+    则可以转而得到 
+    $$
+    x_{s} = 
+    \begin{cases}
+        k_{s}, & s \neq s_0, \\
+        -1, & s = s_0.
+    \end{cases}
+    $$
+    满足 $\sum_{s\in S} x_s \boldsymbol{v}_s =  \boldsymbol{0}$, 
+    因为线性表示仅有有限个 $k_s$, 从而其中仅有有限个非零的 $x_s$, 
+    并且 $x_s$ 不全为 0. 于是 $S$ 线性相关. 
+
+    再证充分性. 
+    若 $S$ 线性相关, 则存在一组标量组 
+    $\{x_s\}_{s\in S}$, 其中存在至少一个至多有限个非零的 $x_s$, 
+    不妨设 $x_{s_0} \neq 0$, 
+    有 
+    $$ \sum_{s \in S} x_s \boldsymbol{v}_s = \boldsymbol{0}$$ 
+    从而得到 
+    $$ \sum_{s \in S-\{s_0\}} x_s \boldsymbol{v}_s = 
+    -x_{s_{0}}\boldsymbol{v}_{s_0}$$ 
+    两边同时乘以 $-x_{s_0}^{-1}$ (因而只在域上能满足) 得到 
+    $$ \boldsymbol{v}_{s_0} = 
+    \sum_{s \in S-\{s_0\}}-x_{s_0}^{-1} x_s \boldsymbol{v}_s$$ 
+    其中仅有有限个非零的 $-x_{s_0}^{-1} x_s $, 
+    因此 $\boldsymbol{v}_{s_0}$ 可由 
+    $S-\{\boldsymbol{v}_{s_0}\}$ 线性表出. 
+    
+\end{proof}
+
+其逆否命题如下: 
+\begin{corollary}
+    设域 $F$ 上的线性空间 $V$ 中的一个向量组 $S$, 
+    $S$ 中的每一向量都无法由其他向量线性表出当且仅当 $S$ 线性无关. 
+\end{corollary}
+
+我们再把线性无关的性质反推回张成子空间中, 得到下面的结论. 
+
+\begin{proposition}
+    设域 $F$ 上的线性空间 $V$ 中的一个向量组 $S$, 
+    $S$ 线性无关且 $S$ 张成 $V$ 的一个子空间 
+    $W = \mathrm{span}(S)$. 
+    则, 在线性组合中标量和向量组的配对意义下, 
+    $\boldsymbol{0}$ 向量在 $\mathrm{span}(S)$ 中表示唯一. 
+\end{proposition}
+
+\begin{proof}
+    实际这是定义的一个翻译. 
+\end{proof}
+
+也就是说, 我们不仅能够用最小的向量组张成线性空间, 
+如果能够保证所谓的表示唯一, 我们也许能够在其上定义类似于在 
+$\mathbb{R}^3$ 上的坐标. 
+
+\section{基和维数}
+
+\subsection{基}
+
+在向量空间 $F^n$ 中, 我们有坐标系 
+$(\boldsymbol{e}_1,\boldsymbol{e}_2,\cdots,\boldsymbol{e}_n)$. 
+这是我们研究几何最基本的结构, 因为向量空间中的任一向量都可以在这组
+坐标系下与坐标 1-1 对应, 也就是说: 对任意 
+$\boldsymbol{x}=(x_1,x_2,\cdots,x_n)^T\in F^n$, 有 
+\begin{equation}
+    \boldsymbol{x} = x_1 \boldsymbol{e}_1 + x_2 \boldsymbol{e}_2 + 
+    \cdots + x_n \boldsymbol{e}_n
+\end{equation}
+上式是在说, $\boldsymbol{x}$ 总是可以被向量组 
+$(\boldsymbol{e}_1,\boldsymbol{e}_2,\cdots,\boldsymbol{e}_n)$ 
+表示, 并且这种表示是唯一的, 而这种唯一的表示, 我们更愿意称其为坐标. 
+
+有了唯一的表示, 我们就能够将几何空间上的属性唯一地与代数中的向量空间 
+1-1 对应起来, 从而我们只需要建系使用向量就能够解决大量的空间几何问题, 
+这就是我们在高中阶段学习向量的意义. 
+
+\begin{remark}
+    当然更加具体的, 几何空间本质还是点的集合而非向量, 向量是我们添置在
+    几何空间中用以研究几何空间点之间的关系的 "脚手架". 
+    我们通常研究的是\textbf{仿射空间 affine space} 
+    $\mathbb{A}_F^n = (A,F^n)$. 
+    它本身是一个 $A$ 的集合, 其中的元素称作\textbf{点}. 
+    在其上配备了一个向量空间 $F^n$, 其中的元素称作\textbf{向量}. 
+    向量和点之间满足这样的关系: 
+    \begin{enumerate}[(1)]
+        \item 任取 $A$ 中的两个点 $P,Q$, 
+        总存在一个向量 $\boldsymbol{\alpha} \in F^n$, 
+        我们记其为 $\overrightarrow{PQ}$,
+        对应于点对 $(P,Q)$. 换言之存在如下的映射: 
+        $$ \begin{aligned}
+            A \times A &\to F^n \\
+            (P,Q) & \mapsto \overrightarrow{PQ}
+        \end{aligned}$$ 
+        这个映射就干脆直接记为 $\overrightarrow{PQ}$ 好了. 
+        \item 任取 $A$ 中的三个点 $P,Q,R$, 
+        则有向量合成关系: 
+        $\overrightarrow{PR} = \overrightarrow{PQ} + 
+        \overrightarrow{QR}$, 其中的加法是循 $F^n$ 的. 
+    \end{enumerate}
+    对仿射空间的研究, 亦是代数几何的主线. 
+\end{remark}
+
+如何在一般的线性空间中构建起坐标这一概念? 
+我们应当选取一组向量, 首先要让它能够表示出线性空间中所有的向量, 
+其次我们要保证在这组向量下的表示是唯一的. 
+
+我们再翻译一下最后的话语. 
+设域 $F$ 上的线性空间 $V$, 给定一组向量 
+$$S=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$$ 
+我们不妨假设它能够线性表出 $V$ 中的所有向量 
+(因为至少他能张成 $\mathrm{span}(S)$) 
+则表示唯一指的是任取向量 $\boldsymbol{v} \in V$, 
+假设它有两个表示 $(x_1,x_2,\cdots,x_n)$ 和 $(y_1,y_2,\cdots,y_n)$ 
+即 
+$$ \begin{aligned}
+\boldsymbol{v} &= x_1\boldsymbol{v}_1 + x_2 \boldsymbol{v}_2 + 
+\cdots x_n\boldsymbol{v}_n \\
+&= y_1\boldsymbol{v}_1 + y_2 \boldsymbol{v}_2 + 
+\cdots y_n\boldsymbol{v}_n
+\end{aligned}$$
+整理得到 
+$$ (x_1-y_1)\boldsymbol{v}_1 + (x_2-y_2) \boldsymbol{v}_2 + 
+\cdots (x_n-y_n)\boldsymbol{v}_n $$
+想要让表示唯一, 即让 $x_i = y_i,\,i=1,2,\cdots,n$, 
+于是我们转化为 \eqref{eq vector formula} 的线性向量方程组, 
+表示唯一就与 \eqref{eq vector formula} 只有零解这一条件等价, 
+后者就是我们先前定义的线性无关. 
+
+\begin{definition}
+    \textbf{[基 basis]} 设 $V$ 是域 $F$ 上的线性空间, 
+    若在 $V$ 中存在线性无关的向量组 $S=(\boldsymbol{v}_s)$, 
+    使得 $V=\mathrm{span}(S)$, 即 $V$ 中任一向量均可由
+    这组向量线性表出, 则称 $S=(\boldsymbol{v}_s)$ 为 
+    $V$ 的一组\textbf{基}. 
+
+    每个向量 $\boldsymbol{x}\in V$ 在基下都有唯一的表示, 
+    设基为 $S=(\boldsymbol{v}_s)$, 
+    有 $ \boldsymbol{x} = \sum_{s} x_s\boldsymbol{v}_s $, 
+    其中表示 $(x_s)$ 此时称为 $\boldsymbol{x}$ 在基 
+    $S=(\boldsymbol{v}_s)$ 下的\textbf{坐标}.
+    
+\end{definition}
+
+\subsection{维数}
+
+之前我们研究了线性无关的内容, 
+随之也提出一个问题: 张成线性空间的线性无关向量组唯一吗? 
+以及张成线性空间的线性无关向量组的大小唯一吗? 
+
+两个问题现如今转化为: 基唯一吗? 基的大小唯一吗? 
+
+我们重回线性组合和线性表示的角度去解决这一问题. 
+
+设 $V$ 是域 $F$ 上的线性空间, 
+$S_1 = (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$, 
+$S_2 = (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s)$ 
+为 $V$ 上的两个向量组. 
+如果 $S_2$ 可由 $S_1$ 线性表出, 则对应每个向量都可以由 $S_1$ 线性表出, 
+那么有 
+$$ \boldsymbol{w_j} = a_{1j}\boldsymbol{v}_1 +a_{2j}\boldsymbol{v}_2
+ + \cdots + a_{rj}\boldsymbol{v}_r,\,j=1,2,\cdots,s $$
+形式上, 我们可以将上式定义为如下的矩阵乘法, 这与矩阵乘法初始定义一致: 
+$$ \boldsymbol{w_j} = 
+(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+\begin{pmatrix}
+    a_{1j} \\
+    a_{2j} \\
+    \vdots \\
+    a_{rj} \\
+\end{pmatrix}
+,
+\,j=1,2,\cdots,s $$
+如若我们将向量组拼凑起来就能得到矩阵的新意义: 
+\begin{equation}\label{eq vector change}
+    (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s) = 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \begin{pmatrix}
+    a_{11} & a_{12} & \cdots & a_{1s} \\
+    a_{21} & a_{22} & \cdots & a_{2s} \\
+    \vdots & \vdots & \ddots & \vdots  \\
+    a_{r1} & a_{r2} & \cdots & a_{rs} 
+\end{pmatrix}
+\end{equation}
+
+矩阵的意义就是\textbf{线性空间上向量组之间的表示关系}. 
+
+设 $\boldsymbol{A}=(a_{ij})_{r\times s}$, 
+当 $S_1,S_2$ 均是线性无关的向量组时, 表示唯一, 进而每个 $a_{ij}$ 
+是唯一的, 从而 $\boldsymbol{A}$ 唯一, 
+我们称其为\textbf{向量组过渡矩阵}. 
+
+\begin{lemma}
+    设 $V$ 是域 $F$ 上的线性空间, 
+    $S = (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$ 
+    为其上的一个线性无关的向量组. 
+    若有线性表示关系 
+    $$ 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{A}
+    =(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{O}
+    = (\boldsymbol{0},\boldsymbol{0},\cdots,\boldsymbol{0})$$ 
+    则 $\boldsymbol{A} = \boldsymbol{O}$. 
+\end{lemma}
+
+\begin{proof}
+    只需抽出每一个 $\boldsymbol{v}_j$ 来, 对应地有 
+    $$  a_{1j}\boldsymbol{v}_1 +a_{2j}\boldsymbol{v}_2
+ + \cdots + a_{rj}\boldsymbol{v}_r=\boldsymbol{0}\,j=1,2,\cdots,s $$
+    由线性无关性, 知每个 $a$ 都为 0, 从而 
+    $\boldsymbol{A} = \boldsymbol{O}$.
+\end{proof}
+
+上述引理实际告诉我们, 在取定的向量组为线性无关时, 
+我们做线性表示关系运算时, 实际只需要处理对应的矩阵的乘法. 
+
+\begin{corollary} \label{col A=I}
+    设 $V$ 是域 $F$ 上的线性空间, 
+    $S = (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$ 
+    为其上的一个线性无关的向量组. 
+    若有线性表示关系 
+    $$ 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    = 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{A}
+    $$ 
+    则 $\boldsymbol{A} = \boldsymbol{I}_r$. 
+\end{corollary}
+
+\begin{proof}
+    条件等价于 
+    $$ 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{I}_r= 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{A}
+    $$
+    矩阵的加法的引入对应的是标量的加法, 自然地有: 
+    $$ 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    (\boldsymbol{A}-\boldsymbol{I}_r)= 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{O}
+    $$
+    于是由引理得到 $\boldsymbol{A}= \boldsymbol{I}_r$. 
+\end{proof}
+
+下面我们将由几个引理来证明基的大小是唯一的, 
+我们采用过渡矩阵的角度来揭露这一事实. 
+
+\begin{lemma} \label{lemma AB=I=BA}
+    设 $\boldsymbol{A}\in \mathcal{M}_{r,s}(F)$, 
+    $\boldsymbol{B}\in \mathcal{M}_{s,r}(F)$. 
+    若它们满足 $\boldsymbol{A}\boldsymbol{B} = \boldsymbol{I}_r$, 
+    $\boldsymbol{B}\boldsymbol{A} = \boldsymbol{I}_s$, 
+    则 $r=s$. 
+\end{lemma}
+
+\begin{proof}
+    只需注意到 
+    $$ r = \mathrm{tr}(\boldsymbol{I}_r) = 
+    \mathrm{tr}(\boldsymbol{A}\boldsymbol{B})=
+    \mathrm{tr}(\boldsymbol{B}\boldsymbol{A})= 
+    \mathrm{tr}(\boldsymbol{I}_s) = s$$
+    即可. 
+\end{proof}
+
+上述引理有深厚意义, 它说明了只有方阵才能够定义逆矩阵. 
+它现在也能助我们揭示线性无关向量组线性等价的必要条件. 
+
+\begin{corollary}
+    设 $V$ 是域 $F$ 上的线性空间, 
+    $S_1 = (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$, 
+    $S_2 = (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s)$ 
+    为 $V$ 上的两个线性无关的向量组. 
+    若 $S_1$ 和 $S_2$ 线性等价 (可互相线性表示), 则 $r=s$. 
+\end{corollary}
+
+\begin{proof}
+    我们用线性表示的过渡矩阵来描述: 
+    设 
+    $$
+    (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s) = 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{A}
+    $$
+    以及 
+    $$
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)=
+    (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s) 
+    \boldsymbol{B}
+    $$
+    于是我们可以得到 
+    $$
+    (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s) = 
+    (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_s)
+    \boldsymbol{AB}
+    $$
+    和
+    $$
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r) = 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)
+    \boldsymbol{BA}
+    $$
+    由推论 \ref{col A=I} 可得 
+    $\boldsymbol{A}\boldsymbol{B} = \boldsymbol{I}_r$, 
+    $\boldsymbol{B}\boldsymbol{A} = \boldsymbol{I}_s$. 
+    再由引理 \ref{lemma AB=I=BA} 得到 $r=s$. 
+\end{proof}
+
+在证明过程中我们也自然地得到了下面的结论: 
+\begin{corollary}\label{coro bridge matrix}
+    线性空间 $V$ 上的两个线性无关的向量组 
+    $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+    和 $(\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n)$
+    线性等价当且仅当它们之间的过渡矩阵是可逆矩阵. 
+\end{corollary}
+
+于是, 能够张成线性空间的线性无关的向量组, 
+彼此之间当然线性等价, 从而一定有相同的大小, 
+从而维数成为了良定的概念. 
+
+\begin{definition}
+    \textbf{[维数 dimension]} 
+    若线性空间有有限的基, 且基有 $n$ 个向量, 
+    则称线性空间为\textbf{ $n$ 维线性空间}, 
+    称它的\textbf{维数}为 $n$. 
+    若线性空间没有有限的基, 则称其为\textbf{无穷维线性空间}. 
+
+    一般地, \textbf{维数}定义为线性空间的一个基的基数, 
+    记为 $\mathrm{dim}\,V$. 
+\end{definition}
+
+\subsection{基的等价定义}
+
+% 极小生成系
+方才我们是从线性表示的角度来定义基的, 
+接下来我们将从另外两个角度来定义基, 
+其一是我们上一节展开的张成子空间, 
+其二是我们熟知的向量组的秩的概念. 
+我们下面论述只为达到一个目的: 这三者有共同的本质. 
+
+对 $V$ 的任一子空间 $W$, 
+若存在一组向量 $S=(\boldsymbol{v}_s)$ 使得 
+$W= \mathrm{span}(S)$, 
+则我们称 $S$ 是 $W$ 的一个\textbf{生成系}. 
+按照包含关系对所有的生成系 $S$ 排序 (这是一个偏序) 
+在一个链中最小的 $S_0$ 称为 $W$ 的一个\textbf{极小生成系}. 
+
+换言之: 对于 $W$ 的任一生成系 $S$, 
+其中必然存在一个生成系 $S_0 \subset S$, 
+并且对于任意生成系 $S' \subset S$, 都有 $S_0 \subset S$. 
+
+这种极小关系源于偏序集的结构. 
+
+\begin{lemma}
+    设 $V$ 是域 $F$ 上的线性空间, 
+    向量组 $S=(\boldsymbol{v}_s)$ 是 $V$ 中的一个向量组. 
+    若 $S$ 线性相关, 则存在 $\boldsymbol{v}_{s_0} \in S$ 
+    使得 $\mathrm{span}(S) =
+    \mathrm{span}(S-\{\boldsymbol{v}_{s_0}\})$. 
+\end{lemma}
+
+\begin{proof}
+    由命题 \ref{prop linear dependent}, 
+    可知存在 $\boldsymbol{v}_{s_0} \in S$, 
+    使得 $\boldsymbol{v}_{s_0}$ 可被向量组 
+    $S-\{\boldsymbol{v}_{s_0}\}$ 线性表出. 
+    即存在有限个非零项的标量组 $(k_s)_{s \in S-\{s_0\}}$  使得 
+    $$ \boldsymbol{v}_{s_0} = \sum_{s\in S-\{s_0\}} 
+    k_s \boldsymbol{v}_s $$
+
+    因此, 对于任意 $\boldsymbol{v} \in \mathrm{span}(S)$, 
+    存在有限个非零项的标量组 $(x_s)_{s\in S}$ 使得 
+    $$ \boldsymbol{v} = \sum_{s \in S} \boldsymbol{v}_s $$
+    将 $\boldsymbol{v}_{s_0}$ 展开得到 
+    $$ \begin{aligned}
+    \boldsymbol{v} &= \sum_{s \in S-\{s_0\}}x_s
+    \boldsymbol{v}_s + \boldsymbol{v}_{s_0}\\
+    &=\sum_{s \in S-\{s_0\}}x_s 
+    \boldsymbol{v}_s + x_{s_0}\sum_{s \in S-\{s_0\}}k_s\boldsymbol{v}_s \\
+    &=\sum_{s \in S-\{s_0\}} (x_s + x_{s_0}k_s ) \boldsymbol{v}_s 
+    \end{aligned} $$ 
+    必然只有有限个非零的 $x_s + x_{s_0}k_s$, 因此 
+    $\boldsymbol{v} \in \mathrm{span}(S)$, 
+    由任意性, $\mathrm{span}(S) \subset
+    \mathrm{span}(S-\{\boldsymbol{v}_{s_0}\})$. 
+    而另一个方向是显然的, 从而等式成立. 
+\end{proof}
+
+\begin{theorem}
+    设 $V$ 是域 $F$ 上的线性空间, $W$ 为其任一子空间, 
+    则 $W$ 的极小生成系一定是线性无关的向量组, 
+    从而我们断言: 
+    向量组 $S=(\boldsymbol{v}_s)$ 是 $W$ 的极小生成系
+    当且仅当 $S=(\boldsymbol{v}_s)$ 是 $W$ 的一个基. 
+\end{theorem}
+
+\begin{proof}
+    先证必要性, 设向量组 $S=(\boldsymbol{v}_s)$ 是 $W$ 的极小生成系, 
+    也就是说 $W = \mathrm{span}(S)$, 从而我们只需要证明 $S$ 一定是
+    线性无关的向量组即可. 
+
+    采用反证法, 假设 $S$ 线性相关, 则由引理可得 
+    存在 $\boldsymbol{v}_{s_0} \in S$ 
+    使得 $\mathrm{span}(S) =
+    \mathrm{span}(S-\{\boldsymbol{v}_{s_0}\})$. 
+    也就是说 $S-\{\boldsymbol{v}_{s_0}\}$ 也是一个生成系, 
+    显然 $S-\{\boldsymbol{v}_{s_0}\} \subsetneq S$, 
+    与极小生成系的定义矛盾. 
+
+    再证充分性, 设 $S=(\boldsymbol{v}_s)$ 是 $W$ 的一个基, 
+    从而 $S$ 是 $W$ 的一个生成系. 
+    对 $W$ 的任意生成系 $S'\subset S$, 
+    因为 $\mathrm{span}(S) = W = \mathrm{span}(S')$ 
+    从而两个向量组是线性等价的, $S$ 的任意向量 $\boldsymbol{v}_s$ 
+    可由 $S'$ 线性表出. 假设存在 
+    $\boldsymbol{v}_{s_0} \in S - S'$ 
+    有线性表示 
+    $$\boldsymbol{v}_{s_0} = \sum_{s\in S'} k_s\boldsymbol{v}_s$$ 
+    将 $k_s$ 扩张为 
+    $$x_s = \begin{cases}
+        k_s, & s \in S' \\
+        0, & s \in S- S'-\{s_0\} \\
+        -1, & s = s_0
+    \end{cases}$$
+    于是上述方程实际诱导出 $$\sum_{s\in S}x_s \boldsymbol{v}_s = 0$$ 
+    的一个非零解 $(x_s)_{s\in S}$, 与线性无关矛盾. 
+    
+\end{proof}
+
+\begin{remark}
+    转而提出问题: 我们能否按基数大小来定义极小生成系呢? 
+    理论上因为基数是一个良序集, 极小元总是存在, 
+    我们就能够直接定义维数为极小生成系的基数. 
+
+    答案是至少如果按照我们目前的路线, 是行不通的. 
+    见上述证明, 如果当维数是无穷时, 减去一个向量基数或许不变, 
+    我们没办法通过这一方法导出矛盾. 
+
+    对于极小生成系和极大无关组, 因为无穷维的麻烦, 
+    包含关系是更能操作的序. 
+\end{remark}
+
+我们先前发现, 线性无关的向量组之间的表示对应了一个矩阵. 
+因此, 我们也可以将矩阵的秩的理论嵌入其内, 
+既然要定义秩的观念, 我们就要说明极大无关组的概念. 
+
+设 $V$ 是域 $F$ 上的线性空间, 
+$S = (\boldsymbol{v}_s)_{v\in S}$ 为 $V$ 上的一个向量组. 
+对于其子线性无关向量组 $S' = (\boldsymbol{v}_s)_{v\in S'} \subset S$ 
+循包含关系定义极大元为\textbf{极大无关组}. 
+即对于 $S$ 的极大无关组 $S_0$, 满足: 
+$S_0$ 是一个线性无关的向量组, 且
+任意添加 $\boldsymbol{w} \in S-S_0$ 组成 
+$B_{\boldsymbol{w}}=S_0 \sqcup \{\boldsymbol{w}\}$, 
+$B$ 必线性相关. 
+
+\begin{lemma} \label{lemma add a vector}
+    设 $V$ 是域 $F$ 上的线性空间, $S=(\boldsymbol{v}_s)$ 
+    为其上线性无关的向量组. 若添加一个向量 $\boldsymbol{w}$ 
+    得到的向量组 
+    $B_{\boldsymbol{w}}=S \sqcup \{\boldsymbol{w}\}$ 
+    线性相关, 则 $\boldsymbol{w} \in \mathrm{span}(S)$, 
+    即 $\boldsymbol{w}$ 可由 $S$ 线性表出. 
+\end{lemma}
+
+\begin{proof}
+    观察线性表示式 
+    $$ \sum_{s \in S}x_s \boldsymbol{v}_s + x \boldsymbol{w} = 
+    \boldsymbol{0} $$
+    若 $x=0$, 则式子化为 
+    $$ \sum_{s \in S}x_s \boldsymbol{v}_s  = 
+    \boldsymbol{0} $$
+    由 $S$ 线性无关, 可知 $x_s = 0,\,s\in S$ 
+    于是所有的系数都为 0. 但是因为 $B$ 线性相关, 
+    必存在非 0 标量组, 
+    从而存在 $x \neq 0$ 满足于 
+    $$ \sum_{s \in S}x_s \boldsymbol{v}_s + x \boldsymbol{w} = 
+    \boldsymbol{0} $$ 
+    将其改写为 
+    $$\boldsymbol{w} = -\sum_{s \in S} x^{-1}x_s\boldsymbol{v}_s$$
+    就表出了 $\boldsymbol{w}$. 
+\end{proof}
+
+\begin{theorem}
+    设 $V$ 是域 $F$ 上的线性空间, $W$ 为其任一子空间, 
+    向量组 $S=(\boldsymbol{v}_s)$ 是 $W$ 的一个极大无关组
+    当且仅当 $S=(\boldsymbol{v}_s)$ 是 $W$ 的一个基. 
+\end{theorem}
+
+\begin{proof}
+    先证必要性, 设向量组 $S=(\boldsymbol{v}_s)$ 是 $W$ 的极大无关组. 
+    任取 $\boldsymbol{w} \in W$, 若 $\boldsymbol{w} \in \mathrm{span}(S)$ 
+    则它一定能被线性表出; 若 $\boldsymbol{w} \in W- \mathrm{span}(S)$ 
+    则由其为 $W$ 的极大无关组, 
+    $B_{\boldsymbol{w}}=S \sqcup \{\boldsymbol{w}\}$ 一定线性相关.  
+    因此由引理,一定有 $\boldsymbol{w} \in \mathrm{span}(S)$. 
+    再结合极大无关组是线性无关的, $S$ 从而为 $W$ 的一个基. 
+
+    再证必要性, 设 $S=(\boldsymbol{v}_s)$ 是 $W$ 的一个基. 
+    则任取 $\boldsymbol{w} \in W$, $\boldsymbol{w} \in \mathrm{span}(S)$, 
+    换言之 $B_{\boldsymbol{w}}=S \sqcup \{\boldsymbol{w}\}$ 一定线性相关. 
+    再结合基的线性无关性, $S$ 为 $W$ 的一个极大无关组. 
+\end{proof}
+
+基完全等价于 $V$ 的极大无关组和极小生成系. 
+
+事实上, 我们现在达到了这样的统一: 
+
+\begin{center}
+    $$\begin{aligned}
+        S &\longleftrightarrow \mathrm{span}(S)\\
+        S \mbox{ 的极大无关组} &\longleftrightarrow 
+        \mathrm{span}(S) \mbox{ 的基}\\
+        \mathrm{rank}(S) &= \mathrm{dim}\,  \mathrm{span}(S)  
+    \end{aligned}$$
+\end{center}
+
+我们不妨从此将向量组 $S$ 的秩等价定义为 $\mathrm{dim}\,  \mathrm{span}(S)$. 
+
+\subsection{有限维线性空间的基}
+
+基的等价定义可以将很多结论变得非常显然. 
+
+下面的命题常用来证明基. 
+因为基的等价定义, 第二条件指的就是极小生成系, 第三条件指的是极大无关组, 
+一个是从大的线性空间中不断地去除没有支撑作用的向量缩小生成系, 
+一个是从稀疏的几个向量开始做线性无关扩张得到极大线性无关组, 
+体现了基的两种视角. 
+
+\begin{proposition}
+    设 $V$ 是域 $F$ 上的 $n$ 维线性空间, 
+    $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+    为其上的一个向量组, 则下述三个条件等价: 
+    \begin{enumerate}[(1)]
+        \item $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+        为 $V$ 的一个基. 
+        \item $\mathrm{span}(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n) = V$. 
+        \item $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+        线性无关. 
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    条件 (2) 等价于说向量组是极小生成系, 否则有更小的维数; 
+    条件 (3) 等价于说向量组是极大无关组, 否则有更大的维数. 
+    不过是有限维内的等价条件的翻译罢了. 
+\end{proof}
+
+下面的推论是经常用到的结论. 
+
+\begin{corollary}
+    设 $V$ 是域 $F$ 上的 $n$ 维线性空间, 
+    则 $V$ 上的任意 $m\,(m>n)$ 个向量必线性相关. 
+\end{corollary}
+
+\begin{proof}
+    假设这个向量组线性无关, 则它是 $V$ 中的一个大小为 $m$ 的线性无关向量组, 
+    与基是 $V$ 的极大无关组矛盾. 
+\end{proof}
+
+并且它还能生成另一则很常用的结论. 
+
+\begin{theorem}
+    设 $V$ 是域 $F$ 上的 $n$ 维线性空间, $W$ 为 $V$ 的子空间, 
+    并且 $\mathrm{dim}\,W=\mathrm{dim}\,V=n$, 则 $W=V$.
+\end{theorem}
+
+\begin{proof}
+    反证法. 设 $W$ 上有一组基 
+    $B=(\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n)$. 
+    假设存在 $\boldsymbol{v}\in V-W = V-\mathrm{span}(B)$, 
+    则有 $B\sqcup \{\boldsymbol{v}\}$ 线性无关. 
+    它的大小为 $n+1$, 由上述推论矛盾. 
+\end{proof}
+
+下面的定理常被称作基扩张定理. 
+
+\begin{theorem}
+    设 $V$ 是域 $F$ 上的 $n$ 维线性空间, 
+    $S=(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_r)$ 
+    是其上的线性无关向量组, $r<n$, $V$ 中有一个基 
+    $B=(\boldsymbol{e}_1,\boldsymbol{e}_2,\cdots,\boldsymbol{e}_n)$, 
+    则必然可在 $B$ 中挑出 $n-r$ 个向量组成 $B'$, 
+    使 $S\sqcup B'$ 构成 $V$ 的一个基. 
+\end{theorem}
+
+\begin{proof}
+    \textbf{Step 1}: 
+    断言至少存在一个 
+    $\boldsymbol{e}_{(1)} \in B$ 使得 
+    $\boldsymbol{e}_{(1)} \notin \mathrm{span}(S)$, 
+    否则 
+    $$V = \mathrm{span}(B) =
+    \mathrm{span}(S\cup B) = \mathrm{span}(S)$$ 
+    诱导出 $n = r$.
+    
+    再由引理 \ref{lemma add a vector} 的逆否命题, 
+    得到的向量组 $S_{(1)}= S\sqcup\{\boldsymbol{e}_{(1)}\}$ 
+    线性无关, 令 $B_{(1)} = B -\{\boldsymbol{e}_{(1)}\}$, 
+    $|S_{(1)}|=r+1$. 
+
+    \textbf{Step $i$} ($i\geq 2$)
+    断言至少存在一个 
+    $\boldsymbol{e}_{(i)} \in B_{(i-1)}$ 使得 
+    $\boldsymbol{e}_{(i)} \notin \mathrm{span}(S_{(i-1)})$, 
+    否则 
+    $$V = \mathrm{span}(B) =
+    \mathrm{span}(S\cup B) = 
+    \mathrm{span}(S_{(i-1)}\cup B_{(i-1)}) 
+    = \mathrm{span}(S_{(i-1)})$$ 
+    诱导出 $n = r+i-1$.
+    
+    再由引理 \ref{lemma add a vector} 的逆否命题, 
+    得到的向量组 $S_{(i)}= S_{i-1}\sqcup\{\boldsymbol{e}_{(i)}\}$ 
+    线性无关, 令 $B_{(o)} = B_{i-1} -\{\boldsymbol{e}_{(i)}\}$, 
+    $|S_{(i)}|=r+i$. 
+
+    \textbf{Step $n-r+1$:} 
+    当执行完 $i = n-r$ 时, 我们已经得到 
+    $$S_{(n-r)}=S\sqcup \{\boldsymbol{e}_{(1)},\boldsymbol{e}_{(2)},
+    ,\cdots,\boldsymbol{e}_{(n-r)}\}$$ 它是一个有 $n$ 个向量的
+    线性无关的向量组. 因此, 它构成了 $V$ 的一个基. 
+
+\end{proof}
+
+\begin{corollary}
+    设 $V$ 是域 $F$ 上的 $n$ 维线性空间, 
+    $S$ 是其上的一个向量组, 
+    则存在 $V$ 的一个基, 它包含了 $S$ 的一个极大无关组. 
+\end{corollary}
+
+\begin{proof}
+    取 $S$ 的极大无关组进行基扩张即可. 
+\end{proof}
+
+
+\subsection{基的变换}
+
+观察几个简单的例子很容易发现基是不唯一的, 
+甚至就算加上了诸多条件都不唯一. 
+因此, 我们转而要去研究基与基之间的关系, 
+这既能让我们在线性空间中建立起不同的坐标体系, 也能够验证
+% 展示公式即可
+
+下述的引理是一个通用的结论. 
+
+\begin{lemma}
+    设 $V$ 是域 $F$ 上的线性空间, 其上有一组基 $B$, 
+    与一个线性无关向量组 $S$, 
+    则 $S$ 是 $V$ 的极大无关组当且仅当 $V$ 与 $B$ 线性等价.  
+\end{lemma}
+
+\begin{proof}
+    先证充分性, 设 $V$ 与 $B$ 线性等价, 
+    假设 $S$ 不是 $V$ 的极大无关组, 则存在 $\boldsymbol{v}\in V-S$ 
+    使得 $S \sqcup \{\boldsymbol{v}\}$ 线性无关. 
+    因此, 由引理 \ref{lemma add a vector} 可知 
+    $\mathrm{span}(S \sqcup \{\boldsymbol{v}\}) \supsetneq 
+    \mathrm{span}(S) $, 
+    于是导出包含链 
+    $$ V \supset \mathrm{span}(S \sqcup \{\boldsymbol{v}\}) \supsetneq 
+    \mathrm{span}(S) = \mathrm{span}(B) = V$$
+    矛盾, 从而 $S$ 是 $V$ 的极大无关组. 
+
+    再证必要性, 设 $S$ 是 $V$ 的极大无关组, 
+    则 $\mathrm{span}(S)=V=\mathrm{span}(B)$ 
+    从而线性等价. 
+\end{proof}
+
+将上述引理结合推论 \ref{coro bridge matrix}, 我们有如下的结论. 
+
+\begin{theorem}
+    设 $n$ 维线性空间 $V$ 上的基为 
+    $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$,  
+    则其上的线性无关向量组 
+    $(\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n)$
+    是 $V$ 的一个基当且仅当
+    向量组  $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+    到向量组 $(\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n)$ 
+    的过渡矩阵 $\boldsymbol{A}$ 是一个可逆矩阵. 
+\end{theorem}
+
+我们称 $\boldsymbol{A}$ 是 
+基  $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+到基 $(\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n)$ 
+过渡矩阵, 
+即有关系式
+\begin{equation}
+    \begin{cases}
+        \boldsymbol{w}_1 &= a_{11}\boldsymbol{v}_1 + a_{21}\boldsymbol{v}_2 
+        + \cdots + a_{n1}\boldsymbol{v}_n \\
+        \boldsymbol{w}_1 &= a_{12}\boldsymbol{v}_1 + a_{22}\boldsymbol{v}_2 
+        + \cdots + a_{n2}\boldsymbol{v}_n \\
+        \vdots \\
+        \boldsymbol{w}_1 &= a_{1n}\boldsymbol{v}_1 + a_{2n}\boldsymbol{v}_2 
+        + \cdots + a_{nn}\boldsymbol{v}_n \\
+    \end{cases}
+\end{equation}
+注意这里其实相当于进行了一次矩阵转置: 
+\begin{equation}
+    (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n) = 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)
+    \begin{pmatrix}
+    a_{11} & a_{12} & \cdots & a_{1n} \\
+    a_{21} & a_{22} & \cdots & a_{2n} \\
+    \vdots & \vdots & \ddots & \vdots  \\
+    a_{n1} & a_{n2} & \cdots & a_{nn} 
+\end{pmatrix}
+\end{equation}
+设一个 $V$ 上的向量 $\boldsymbol{v}$ 有这样的表示 
+$$
+(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n) \boldsymbol{x}
+$$
+其中 $\boldsymbol{x}=(x_1,x_2,\cdots,x_n)^T$ 为 $\boldsymbol{v}$ 
+在基 $(\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)$ 
+下的坐标. 
+从而根据基变换公式, 我们可以得到: 
+\begin{equation}
+    \boldsymbol{v}= 
+    (\boldsymbol{v}_1,\boldsymbol{v}_2,\cdots,\boldsymbol{v}_n)
+    \boldsymbol{x}
+    = (\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n) 
+    \boldsymbol{A}^{-1}\boldsymbol{x}
+\end{equation}
+因为基坐标下表示唯一, 若记 $\boldsymbol{v}$ 
+在基 $(\boldsymbol{w}_1,\boldsymbol{w}_2,\cdots,\boldsymbol{w}_n)$ 
+下的坐标为 $\boldsymbol{y}=(y_1,y_2,\cdots,y_n)$ 
+则我们推导得到了坐标变换公式
+$$\boldsymbol{y}=\boldsymbol{A}^{-1}\boldsymbol{x}$$ 
+其中间的变换矩阵刚好是基过渡矩阵的逆, 
+我们称它服从协变关系. 
+
+
+
+
+
+\subsection{基的存在性*}
+
+伴随而来的还有一个问题, 是否每个线性空间都存在基, 从而每个线性空间都可
+定义维数? 
+
+% lww 4.4.10 所有线性空间都有基；任意线性无关的向量组都可以扩充为基
+
+首先有限维线性空间上这个问题是平凡的, 因为有限维空间上总是存在
+一个大小等于维数的线性无关向量组. 
+
+但是在无穷维线性空间上, 这个结论就麻烦多了. 涉及无穷 (特别是不可数无穷) 
+时, 我们常用的数学归纳法将不再那么有效 (包括超限归纳法), 
+我们需要用集合论上更加本质的工具. 
+
+\begin{lemma}
+    \textbf{Zorn 引理} 
+    设 $(A,\leq)$ 为非空偏序集, 
+    并且其中的每个链 (全序子集) $C$ 都在 $S$ 中有上界, 
+    (即存在 $a_{C}\in P$ 使得对任意 $x \in C$ 都有 $x\leq a_{C}$) 
+    则 $A$ 中存在极大元. 
+\end{lemma}
+
+Zorn 引理与选择公理是等价的, 选择公理是 ZFC 集合论公理体系中的 C, 
+如若不承认选择公理则数学上的反例的测度为 0, 因为我们往往很难构造出
+一个反例, 而总是用反证法证明其存在性. 
+Zorn 引理的证明涉及集合论操作, 这里按下不表, 读者可参阅
+李文威-代数学方法 的第一卷. 
+
+\begin{theorem}
+    设 $F$ 为域, $V$ 是 $F$ 上的线性空间, $S$ 是 $V$ 的一个线性无关向量组, 
+    则 $S$ 总可以扩张成 $V$ 的一个基. 特别地, 取 $S=\varnothing$ 
+    从而 $V$ 总是有基. 
+\end{theorem}
+
+\begin{proof}
+    定义集合 
+    $$ \mathcal{P} = \{T\subset V:\,T\mbox{ 线性无关}, S\subset T\} $$
+    这是一个子集族, 所以 $S \in \mathcal{P}$ 从而 $\mathcal{P}$ 非空, 
+    即使 $S=\varnothing$. 
+
+    在 $\mathcal{P}$ 以包含关系 $\subset$ 赋序, $(\mathcal{P},\leq)$ 
+    构成一个偏序集. 
+    取其上的一条链 $C$, 定义 $T_{C} = \cup_{T \in C} $, 
+    接下来我们证明 $T_{C} \in C$ 从而上界 $T_{C} \in \mathcal{P}$. 
+    首先 $S\subset T \subset \cup_{T \in C} = T_{C}$, 
+    其次取 $T_C$ 上的一个线性组合式 
+    $\sum_{t \in T_C} k_t\boldsymbol{v}_t$ 
+    按照定义, 无论怎么取, 上式总是只有有限非零的个 $t$ 使得 
+    $\boldsymbol{v}_t \in T$,  
+    我们不妨对其排序, 保证 $\boldsymbol{v}_i \in T_i$ 且 
+    $T_1 \subset T_2 \subset \cdots \subset T_n$. 
+    因此每个 $\boldsymbol{v}_i \in T_n$ 从而循 $T_n$ 的线性无关性, 
+    $k_t = 0$. 无论怎么取线性组合式都能保证系数恒为 0 , 
+    于是 $T_{C}$ 线性无关. 
+
+    从而 $T_{C}$ 构成 $T$ 的一个上界, 由 Zorn 引理, 
+    存在极大元 $T'$, 它就是 $V$ 的极大无关组, 从而构成一个基. 
+\end{proof}
+
+
+\end{document}
